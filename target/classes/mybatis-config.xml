@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+        <!-- <typeAlias type="com.icia.ex.dto.PostDTO" alias="post" /> -->
+        <typeAlias type="com.its.project.dto.ClientDTO" alias="client"></typeAlias>
+        <typeAlias type="com.its.project.dto.ProductDTO" alias="product"></typeAlias>
+        <typeAlias type="com.its.project.dto.VendorDTO" alias="vendor"></typeAlias>
+        <typeAlias type="com.its.project.dto.ReviewDTO" alias="review"></typeAlias>
+    </typeAliases>
+</configuration>
