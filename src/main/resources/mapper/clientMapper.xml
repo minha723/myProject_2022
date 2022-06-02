@@ -33,6 +33,9 @@
         update client_table set clientName=#{clientName}, clientEmail=#{clientEmail},
                                 clientMobile=#{clientMobile} where id=#{id}
     </update>
+    <update id="point" parameterType="client">
+        update client_table set clientPoint=clientPoint+#{clientPoint} where id=#{id};
+    </update>
 
 </mapper>
 

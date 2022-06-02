@@ -18,9 +18,13 @@
 
 <button class="btn btn-outline-primary" onclick="logOut()">로그아웃</button>
 <button class="btn btn-outline-primary" onclick="update()">회원정보 수정</button>
+<c:if test="${sessionScope.loginClientId != null}">
+    <button class="btn btn-outline-primary" onclick="point()">포인트 구매</button>
+</c:if>
 <c:if test="${sessionScope.loginClientId eq 'admin'}">
     <button class="btn btn-outline-primary" onclick="findAllClient()"> 고객목록 보기</button>
 </c:if>
+
 </body>
 <script>
     const logOut = () => {
@@ -34,5 +38,10 @@
     const update = () => {
       location.href="/client/update?id=${sessionScope.loginCId}";
     }
+
+    const point = () => {
+      location.href="/client/point?id=${sessionScope.loginCId}";
+    }
+
 </script>
 </html>

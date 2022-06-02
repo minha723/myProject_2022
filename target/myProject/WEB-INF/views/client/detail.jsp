@@ -17,7 +17,9 @@
 
 <table class="table">
     <tr>
-        <th>고객번호</th>
+        <c:if test="${sessionScope.loginClientId eq 'admin'}">
+            <th>고객번호</th>
+        </c:if>
         <th>아이디</th>
         <th>비밀번호</th>
         <th>이름</th>
@@ -30,7 +32,9 @@
 
     </tr>
     <tr>
-        <td> ${client.id} </td>
+        <c:if test="${sessionScope.loginClientId eq 'admin'}">
+            <td> ${client.id} </td>
+        </c:if>
         <td> ${client.clientId} </td>
         <td> ${client.clientPassword}</td>
         <td> ${client.clientName}</td>

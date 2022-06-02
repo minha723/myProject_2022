@@ -74,7 +74,17 @@ public class ClientController {
             return "client/main";
         }
     }
+    @GetMapping("/point")
+    public String pointForm(@RequestParam("id") Long id, Model model){
+        ClientDTO clientDTO = clientService.findById(id);
+        model.addAttribute("client", clientDTO);
+        return "client/point";
+    }
 
+    @PostMapping("/point")
+    public @ResponseBody void point(@ModelAttribute ClientDTO clientDTO){
+        clientService.point(clientDTO);
+    }
 
     @GetMapping("/login")
     public String loginForm() {

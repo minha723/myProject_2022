@@ -49,4 +49,8 @@ public class ClientService {
             return false;
         }
     }
+
+    public void point(ClientDTO clientDTO) {
+        clientRepository.point(clientDTO);
+    }
 }

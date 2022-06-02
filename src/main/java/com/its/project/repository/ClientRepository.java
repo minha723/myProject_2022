@@ -40,4 +40,8 @@ public class ClientRepository {
     public int update(ClientDTO clientDTO) {
         return sql.update("Client.update", clientDTO);
     }
+
+    public void point(ClientDTO clientDTO) {
+        sql.update("Client.point", clientDTO);
+    }
 }
