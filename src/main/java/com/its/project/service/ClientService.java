@@ -40,4 +40,13 @@ public class ClientService {
     public void delete(Long id) {
         clientRepository.delete(id);
     }
+
+    public boolean update(ClientDTO clientDTO) {
+        int result = clientRepository.update(clientDTO);
+        if(result > 0){
+            return true;
+        }else {
+            return false;
+        }
+    }
 }

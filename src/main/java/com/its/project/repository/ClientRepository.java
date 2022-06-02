@@ -37,4 +37,7 @@ public class ClientRepository {
         sql.delete("Client.delete", id);
     }
 
+    public int update(ClientDTO clientDTO) {
+        return sql.update("Client.update", clientDTO);
+    }
 }

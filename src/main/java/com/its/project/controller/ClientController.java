@@ -59,6 +59,22 @@ public class ClientController {
         }
     }
 
+    @GetMapping("/update")
+    public String updateForm(@RequestParam("id") Long id, Model model){
+        ClientDTO clientDTO = clientService.findById(id);
+        model.addAttribute("updateClient", clientDTO);
+        return "client/update";
+    }
+
+    @PostMapping("/update")
+    public String update(@ModelAttribute ClientDTO clientDTO){
+        if(clientService.update(clientDTO)){
+            return "redirect: /client/detail?id=" + clientDTO.getId();
+        }else {
+            return "client/main";
+        }
+    }
+
 
     @GetMapping("/login")
     public String loginForm() {

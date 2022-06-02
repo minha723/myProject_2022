@@ -29,6 +29,11 @@
         delete from client_table where id=#{id}
     </delete>
 
+    <update id="update" parameterType="client">
+        update client_table set clientName=#{clientName}, clientEmail=#{clientEmail},
+                                clientMobile=#{clientMobile} where id=#{id}
+    </update>
+
 </mapper>
 
 
