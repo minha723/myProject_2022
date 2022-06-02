@@ -14,9 +14,21 @@
         select * from client_table where clientId=#{clientId}
     </select>
 
-    <select id="findById" parameterType="client" resultType="client">
+    <select id="login" parameterType="client" resultType="client">
         select * from client_table where clientId=#{clientId} and clientPassword=#{clientPassword}
     </select>
+
+    <select id="findAll" resultType="client">
+        select * from client_table;
+    </select>
+
+    <select id="findById" resultType="client" parameterType="Long">
+        select * from client_table where id=#{id}
+    </select>
+    <delete id="delete" parameterType="Long">
+        delete from client_table where id=#{id}
+    </delete>
+
 </mapper>
 
 

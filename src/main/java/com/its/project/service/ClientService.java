@@ -5,6 +5,8 @@ import com.its.project.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ClientService {
     @Autowired
@@ -23,7 +25,19 @@ public class ClientService {
         clientRepository.save(clientDTO);
     }
 
-    public ClientDTO findById(ClientDTO clientDTO) {
-        return clientRepository.findById(clientDTO);
+    public ClientDTO login(ClientDTO clientDTO) {
+        return clientRepository.login(clientDTO);
+    }
+
+    public List<ClientDTO> findAll() {
+        return clientRepository.findAll();
+    }
+
+    public ClientDTO findById(Long id) {
+        return clientRepository.findById(id);
+    }
+
+    public void delete(Long id) {
+        clientRepository.delete(id);
     }
 }
