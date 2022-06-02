@@ -18,4 +18,8 @@ public class ClientRepository {
         sql.insert("Client.save", clientDTO);
 
     }
+
+    public ClientDTO findById(ClientDTO clientDTO) {
+        return sql.selectOne("Client.findById", clientDTO);
+    }
 }

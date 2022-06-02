@@ -14,6 +14,9 @@
         select * from client_table where clientId=#{clientId}
     </select>
 
+    <select id="findById" parameterType="client" resultType="client">
+        select * from client_table where clientId=#{clientId} and clientPassword=#{clientPassword}
+    </select>
 </mapper>
 
 

@@ -38,6 +38,7 @@
         location.href = "/client/save";
     }
     const cLogIn = () => {
+        location.href = "/client/login";
     }
     const vSignUp = () => {
         location.href = "/vendor/save";

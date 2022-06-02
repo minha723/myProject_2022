@@ -22,4 +22,8 @@ public class ClientService {
     public void save(ClientDTO clientDTO) {
         clientRepository.save(clientDTO);
     }
+
+    public ClientDTO findById(ClientDTO clientDTO) {
+        return clientRepository.findById(clientDTO);
+    }
 }
