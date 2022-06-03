@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
 </head>
 <body>
+<jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
 
 <table class="table">
     <tr>

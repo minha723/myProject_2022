@@ -14,8 +14,9 @@
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
 </head>
 <body>
-<h2>main</h2>
+<jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
 
+<div class="container text-center">
 <button class="btn btn-outline-primary" onclick="logOut()">로그아웃</button>
 <button class="btn btn-outline-primary" onclick="update()">회원정보 수정</button>
 <c:if test="${sessionScope.loginClientId != null}">
@@ -24,6 +25,7 @@
 <c:if test="${sessionScope.loginClientId eq 'admin'}">
     <button class="btn btn-outline-primary" onclick="findAllClient()"> 고객목록 보기</button>
 </c:if>
+</div>
 
 </body>
 <script>

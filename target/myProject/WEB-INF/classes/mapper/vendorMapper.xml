@@ -5,6 +5,19 @@
 
 <mapper namespace="Vendor">
 
+    <insert id="save" parameterType="vendor">
+        insert into vendor_table(vendorId, vendorPassword, vendorName, vendorEmail, vendorMobile, vendorFileName)
+        values (#{vendorId}, #{vendorPassword}, #{vendorName}, #{vendorEmail}, #{vendorMobile}, #{vendorFileName})
+    </insert>
+
+    <select id="duplicateCheck" parameterType="String" resultType="vendor">
+        select * from vendor_table where vendorId=#{vendorId}
+    </select>
+
+    <select id="login" parameterType="vendor" resultType="vendor">
+        select * from vendor_table where vendorId=#{vendorId} and vendorPassword=#{vendorPassword}
+    </select>
+
 </mapper>
 
 

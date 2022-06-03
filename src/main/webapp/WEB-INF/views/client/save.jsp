@@ -101,7 +101,7 @@
     </style>
 </head>
 <body>
-<h2>client/save.jsp</h2>
+<jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
 
 <div class="container signup-form text-center">
     <form action="/client/save" method="post" name="cSignUpForm">

@@ -124,17 +124,13 @@
 
 </head>
 <body>
+<jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
 
-<h2>client/login.jsp</h2>
-
-<div class="m text-center">
+<div class="m text-center center">
     <div class="m-dialog m-login">
         <div class="m-content">
 
             <div class="m-header">
-<%--                <div class="avatar">--%>
-<%--                    <i class="ava bi-person-check-fill"></i>--%>
-<%--                </div>--%>
                 <h4 class="m-title">로그인</h4>
             </div>
 

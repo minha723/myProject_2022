@@ -2,7 +2,7 @@
   Created by IntelliJ IDEA.
   User: user
   Date: 2022-06-02
-  Time: 오전 9:30
+  Time: 오후 4:29
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -104,48 +104,52 @@
 <jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
 
 <div class="container signup-form text-center">
-    <form action="/client/save" method="post" name="cSignUpForm">
-        <p class="lead" style="font-weight: bolder;">회원정보를 입력해주세요</p>
+    <form action="/vendor/save" method="post" name="vSignUpForm" enctype="multipart/form-data">
+        <p class="lead" style="font-weight: bolder;">전문가님 정보를 입력해주세요</p>
         <div class="form-group">
-            <input class="form-control" type="text" onblur="duplicateCheck()" id="clientId" name="clientId"
+            <input class="form-control" type="text" onblur="duplicateCheck()" id="vendorId" name="vendorId"
                    placeholder="아이디" required="required">
             <p id="dup-check-result" style="font-size: small"></p>
         </div>
         <div class="form-group">
-            <input class="form-control mb-0" type="password" onblur="regExpPw()" id="clientPassword"
-                   name="clientPassword" placeholder="비밀번호" required="required">
+            <input class="form-control mb-0" type="password" onblur="regExpPw()" id="vendorPassword"
+                   name="vendorPassword" placeholder="비밀번호" required="required">
             <p id="pw-exp-check-result" style="font-size: small"></p>
         </div>
         <div class="form-group">
-            <input class="form-control" type="text" name="clientName" placeholder="이름" required="required">
+            <input class="form-control" type="text" name="vendorName" placeholder="이름" required="required">
         </div>
         <div class="form-group">
-            <input class="form-control" type="text" name="clientEmail" placeholder="이메일">
+            <input class="form-control" type="text" name="vendorEmail" placeholder="이메일">
         </div>
         <div class="form-group">
-            <input class="form-control mb-0" type="text" onblur="regExpMo()" id="clientMobile" name="clientMobile"
+            <input class="form-control mb-0" type="text" onblur="regExpMo()" id="vendorMobile" name="vendorMobile"
                    placeholder="전화번호">
             <p id="mo-exp-check-result" style="font-size: small"></p>
         </div>
         <div class="form-group">
-        <button type="submit" class="btn btn-primary btn-block btn-lg" onclick="signUp()">Sign up</button>
+            <input class="form-control mb-0" type="file" onblur="regExpMo()" name="vendorFile">
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block btn-lg" onclick="signUp()">Sign up</button>
         </div>
     </form>
-    <div class="text-center">Already have an account? <a href="/client/login">Login here</a></div>
+    <div class="text-center">Already have an account? <a href="/vendor/login">Login here</a></div>
 </div>
 </body>
 
 <script>
     const signUp = () => {
-        cSignUpForm.submit();
+        vSignUpForm.submit();
     }
     const duplicateCheck = () => {
-        const clientId = document.getElementById("clientId").value;
+        const vendorId = document.getElementById("vendorId").value;
         const checkResult = document.getElementById("dup-check-result");
         $.ajax({
             type: "post", // http request method
-            url: "/client/duplicate-check", // 요청주소(컨트롤러 주소값)
-            data: {"clientId": clientId}, //전송하는 파라미터
+            url: "/vendor/duplicate-check", // 요청주소(컨트롤러 주소값)
+            data: {"vendorId": vendorId}, //전송하는 파라미터
             dataType: "text", //리턴받을 데이터 형식
             success: function (result) {
                 if (result == "ok") {
@@ -162,10 +166,10 @@
     }
 
     const regExpPw = () => {
-        let clientPassword = document.getElementById("clientPassword").value;
+        let vendorPassword = document.getElementById("vendorPassword").value;
         const pwExp = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,16}$/;
         const checkResult = document.getElementById("pw-exp-check-result");
-        if (!pwExp.test(clientPassword)) {
+        if (!pwExp.test(vendorPassword)) {
             checkResult.innerText = "최소 8 자, 하나 이상의 문자, 하나의 숫자 및 하나의 특수 문자 입력";
             checkResult.style.color = "red";
         } else {
@@ -174,10 +178,10 @@
     }
 
     const regExpMo = () => {
-        let clientMobile = document.getElementById("clientMobile").value;
+        let vendorMobile = document.getElementById("vendorMobile").value;
         const moExp = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
         const checkResult = document.getElementById("mo-exp-check-result");
-        if (!moExp.test(clientMobile)) {
+        if (!moExp.test(vendorMobile)) {
             checkResult.innerText = "전화번호 형식을 확인해주세요";
             checkResult.style.color = "red";
         } else {

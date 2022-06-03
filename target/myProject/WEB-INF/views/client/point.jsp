@@ -14,6 +14,9 @@
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
 </head>
 <body>
+
+<jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
+
 ${client.clientName}의 현재 잔여 포인트: ${client.clientPoint}
 
 <div class="card-body bg-white mt-0 shadow">

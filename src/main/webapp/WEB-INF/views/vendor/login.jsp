@@ -1,15 +1,15 @@
 <%--
   Created by IntelliJ IDEA.
   User: user
-  Date: 2022-06-02
-  Time: 오전 10:30
+  Date: 2022-06-03
+  Time: 오전 8:53
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-
     <title>Title</title>
+    <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
@@ -67,21 +67,6 @@
             color: #999;
         }
 
-        /*.m-login .avatar {*/
-        /*    position: absolute;*/
-        /*    margin: 0 auto;*/
-        /*    left: 0;*/
-        /*    right: 0;*/
-        /*    top: -70px;*/
-        /*    width: 95px;*/
-        /*    height: 95px;*/
-        /*    border-radius: 50%;*/
-        /*    z-index: 9;*/
-        /*    background: #34b7a7;*/
-        /*    padding: 15px;*/
-        /*    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);*/
-        /*}*/
-
         .m-login.m-dialog {
             margin-top: 80px;
         }
@@ -103,14 +88,6 @@
             outline: none;
         }
 
-        .ava {
-            font-size: 60px;
-            position: relative;
-            left: 9px;
-            top: -10px;
-            color: #fff;
-        }
-
         .form-group {
             margin-bottom: 20px;
         }
@@ -121,7 +98,6 @@
             border-width: 0 0 1px 0;
         }
     </style>
-
 </head>
 <body>
 <jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
@@ -136,15 +112,15 @@
 
             <div class="m-body">
 
-                <form action="/client/login" method="post" name="cLoginForm">
+                <form action="/vendor/login" method="post" name="vLoginForm">
                     <div class="form-group">
-                            <input type="text" class="form-control" name="clientId" placeholder="아이디" required="required">
+                        <input type="text" class="form-control" name="vendorId" placeholder="아이디" required="required">
                     </div>
                     <div class="form-group">
-                            <input type="password" class="form-control" name="clientPassword" placeholder="비밀번호" required="required">
+                        <input type="password" class="form-control" name="vendorPassword" placeholder="비밀번호" required="required">
                     </div>
                     <div class="form-group">
-                        <button class="btn btn-primary btn-lg btn-block login-btn" onclick="cLogin()" style="font-weight: bolder;"><p style="color: white;">로그인</p></button>
+                        <button class="btn btn-primary btn-lg btn-block login-btn" onclick="vLogin()" style="font-weight: bolder;"><p style="color: white;">로그인</p></button>
                     </div>
                 </form>
 
@@ -152,17 +128,16 @@
 
             <div class="m-footer">
                 <a href="#">Forgot Password?</a>
-                <a href="/client/save">Don't have an account?</a>
+                <a href="/vendor/save">Don't have an account?</a>
             </div>
 
         </div>
     </div>
 </div>
-
 </body>
 <script>
-    const cLogin = () => {
-        cLoginForm.submit();
+    const vLogin = () => {
+        vLoginForm.submit();
     }
 </script>
 </html>

@@ -15,7 +15,7 @@
 
 </head>
 <body>
-<h2>index.jsp</h2>
+<jsp:include page="./layout/header.jsp" flush="false"></jsp:include>
 
 <div class="container text-center">
 
@@ -44,6 +44,8 @@
         location.href = "/vendor/save";
     }
     const vLogIn = () => {
+        location.href = "/vendor/login";
+
     }
     const findAllProduct = () => {
 

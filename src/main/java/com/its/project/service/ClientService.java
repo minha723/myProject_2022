@@ -13,7 +13,6 @@ public class ClientService {
     private ClientRepository clientRepository;
     public String duplicateCheck(String clientId) {
         ClientDTO clientDTO = clientRepository.duplicateCheck(clientId);
-        System.out.println("clientDTO = " + clientDTO);
         if(clientDTO == null){
             return "ok";
         }else {
