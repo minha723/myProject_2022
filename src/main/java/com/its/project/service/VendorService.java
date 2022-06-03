@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 @Service
 public class VendorService {
@@ -16,9 +17,9 @@ public class VendorService {
 
     public String duplicateCheck(String vendorId) {
         VendorDTO vendorDTO = vendorRepository.duplicateCheck(vendorId);
-        if(vendorDTO == null){
+        if (vendorDTO == null) {
             return "ok";
-        }else {
+        } else {
             return "no";
         }
 
@@ -27,21 +28,42 @@ public class VendorService {
     public boolean save(VendorDTO vendorDTO) throws IOException {
         MultipartFile vendorFile = vendorDTO.getVendorFile();
         String vendorFileName = vendorFile.getOriginalFilename();
-        vendorFileName=System.currentTimeMillis()+"-"+ vendorFileName;
+        vendorFileName = System.currentTimeMillis() + "-" + vendorFileName;
         vendorDTO.setVendorFileName(vendorFileName);
-        String savePath ="D:\\spring_img\\" + vendorFileName;
+        String savePath = "D:\\spring_img\\" + vendorFileName;
         if (!vendorFile.isEmpty()) {
             vendorFile.transferTo(new File(savePath));
         }
         int saveResult = vendorRepository.save(vendorDTO);
-        if(saveResult > 0){
+        if (saveResult > 0) {
             return true;
-        }else {
+        } else {
             return false;
         }
     }
 
     public VendorDTO login(VendorDTO vendorDTO) {
         return vendorRepository.login(vendorDTO);
+    }
+
+    public List<VendorDTO> findAll() {
+        return vendorRepository.findAll();
+    }
+
+    public VendorDTO findById(Long id) {
+        return vendorRepository.findById(id);
+    }
+
+    public void delete(Long id) {
+        vendorRepository.delete(id);
+    }
+
+    public boolean update(VendorDTO vendorDTO){
+        int result = vendorRepository.update(vendorDTO);
+        if(result > 0){
+            return true;
+        }else {
+            return false;
+        }
     }
 }

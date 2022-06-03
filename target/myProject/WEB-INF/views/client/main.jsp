@@ -24,6 +24,7 @@
 </c:if>
 <c:if test="${sessionScope.loginClientId eq 'admin'}">
     <button class="btn btn-outline-primary" onclick="findAllClient()"> 고객목록 보기</button>
+    <button class="btn btn-outline-primary" onclick="findAllVendor()"> 전문가목록 보기</button>
 </c:if>
 </div>
 
@@ -36,7 +37,9 @@
     const findAllClient = () => {
       location.href="/client/findAll";
     }
-
+    const findAllVendor = () => {
+        location.href="/vendor/findAll";
+    }
     const update = () => {
       location.href="/client/update?id=${sessionScope.loginCId}";
     }

@@ -46,7 +46,7 @@
         const pwConfirm = document.getElementById("pwConfirm").value;
         const pwDB = '${updateClient.clientPassword}';
         if(pwConfirm == pwDB){
-            location.href="/member/delete?id=${updateClient.id}";
+            location.href="/client/delete?id=${updateClient.id}";
         }else {
             alert("비밀번호를 확인해주세요.")
         }

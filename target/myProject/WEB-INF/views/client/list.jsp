@@ -22,9 +22,9 @@
     <table class="table">
 
         <tr>
-            <th>id</th>
-            <th>clientId</th>
-            <th>clientName</th>
+            <th>고객 번호</th>
+            <th>고객 아이디</th>
+            <th>고객 이름</th>
         </tr>
 
         <c:forEach var="client" items="${clientList}">

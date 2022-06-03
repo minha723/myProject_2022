@@ -18,6 +18,23 @@
         select * from vendor_table where vendorId=#{vendorId} and vendorPassword=#{vendorPassword}
     </select>
 
+    <select id="findAll" resultType="vendor">
+        select * from vendor_table
+    </select>
+
+    <select id="findById" parameterType="Long" resultType="vendor">
+        select * from vendor_table where id=#{id}
+    </select>
+
+    <delete id="delete" parameterType="Long">
+        delete from vendor_table where id=#{id}
+    </delete>
+
+    <update id="update" parameterType="vendor">
+        update vendor_table set vendorName=#{vendorName}, vendorEmail=#{vendorEmail},
+                                vendorMobile=#{vendorMobile} where id=#{id}
+    </update>
+
 </mapper>
 
 
