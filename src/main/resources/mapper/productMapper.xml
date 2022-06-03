@@ -4,6 +4,15 @@
 
 
 <mapper namespace="Product">
+    <insert id="save" parameterType="product">
+        insert into product_table(vendorId, productName, productDesc, productPrice, productFileName)
+        values (#{vendorId}, #{productName}, #{productDesc}, #{productPrice}, #{productFileName})
+
+    </insert>
+
+    <select id="findAll" resultType="product">
+        select * from product_table;
+    </select>
 
 </mapper>
 

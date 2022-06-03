@@ -48,7 +48,7 @@
     }
 
     const saveProduct = () => {
-        location.href="/product/save?id=${sessionScope.loginVId}";
+        location.href="/product/save";
     }
 
 </script>
