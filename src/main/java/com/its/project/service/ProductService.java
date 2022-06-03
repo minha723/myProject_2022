@@ -19,7 +19,7 @@ public class ProductService {
     private ProductRepository productRepository;
 
     private static final int BLOCK_LIMIT = 3;
-    private static final int PAGE_LIMIT = 5;
+    private static final int PAGE_LIMIT = 6;
 
     public boolean save(ProductDTO productDTO) throws IOException {
         MultipartFile productFile = productDTO.getProductFile();

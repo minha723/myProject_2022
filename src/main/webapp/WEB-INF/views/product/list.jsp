@@ -12,43 +12,77 @@
 <head>
     <title>Title</title>
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
-
+    <style>
+        .product-list{
+            max-width: 800px;
+            margin: auto;
+            padding-bottom: 10px;
+        }
+        .small{
+            color: #51585e;
+        }
+        a{
+            background-color: transparent;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
 <jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
 
-<div class="container">
+<div class="container text-end">
     <form action="/product/search" method="get">
         <input type="text" name="q" placeholder="찾고싶은 상품을 검색해보세요">
         <input type="submit" value="검색">
     </form>
 </div>
 
-<div class="container text-end">
-    <button class="btn btn-outline-primary" onclick="starList()">별점순으로 목록보기</button>
+<div class="container text-end center">
+    <button class="btn btn-sm" onclick="starList()">별점순으로 목록보기</button>
 </div>
 
-<div class="container">
-    <table class="table table-hover">
-        <tr>
-            <th>상품번호</th>
-            <th>상품이름</th>
-            <th>상품평점</th>
-            <th>전문가</th>
-        </tr>
+<%--<div class="container">--%>
+<%--    <table class="table table-hover">--%>
+<%--        <tr>--%>
+<%--            <th>상품번호</th>--%>
+<%--            <th>상품이름</th>--%>
+<%--            <th>상품평점</th>--%>
+<%--            <th>전문가</th>--%>
+<%--        </tr>--%>
 
-        <c:forEach var="product" items="${productList}">
-            <c:if test="${product.productApproval eq 1}">
-                <tr>
-                    <td> ${product.id} </td>
-                    <td><a href="/product/detail?page=${paging.page}&id=${product.id}"> ${product.productName}</td>
-                    <td>${product.productStar}</td>
-                    <td>${product.vendorId}</td>
-                </tr>
-            </c:if>
-        </c:forEach>
-    </table>
+<%--        <c:forEach var="product" items="${productList}">--%>
+<%--            <c:if test="${product.productApproval eq 1}">--%>
+<%--                <tr>--%>
+<%--                    <td> ${product.id} </td>--%>
+<%--                    <td><a href="/product/detail?page=${paging.page}&id=${product.id}"> ${product.productName}</a>></td>--%>
+<%--                    <td>${product.productStar}</td>--%>
+<%--                    <td>${product.vendorId}</td>--%>
+<%--                </tr>--%>
+<%--            </c:if>--%>
+<%--        </c:forEach>--%>
+<%--    </table>--%>
+<%--</div>--%>
+
+<div class="row row-cols-1 row-cols-md-3 g-4 product-list">
+
+<c:forEach var="product" items="${productList}">
+        <div class="col">
+            <div class="card"><a href="/product/detail?page=${paging.page}&id=${product.id}">
+
+                <img src="${pageContext.request.contextPath}/productUpload/${product.productFileName}" class="card-img-top"
+                     alt="..." width="216" height="162" loading="lazy">
+                <div class="card-body">
+                    <p class="card-text small">${product.vendorId}</p>
+                    <h5 class="card-title fw-bold text-black">${product.productName}</h5>
+                    <p class="card-text text-end text-black">${product.productPrice}원</p>
+                    <p class="card-text text-end small">별점: ${product.productStar}점</p>
+                </div>
+            </a>
+            </div>
+        </div>
+</c:forEach>
 </div>
+
 
 <div class="container">
     <ul class="pagination justify-content-center">
