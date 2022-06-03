@@ -5,7 +5,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class ProductRepository {
@@ -16,7 +18,19 @@ public class ProductRepository {
         return sql.insert("Product.save", productDTO);
     }
 
-    public List<ProductDTO> findAll() {
-    return sql.selectList("Product.findAll");
+    public List<ProductDTO> findAll(Map<String, Integer> pagingParam) {
+    return sql.selectList("Product.findAll", pagingParam);
+    }
+
+    public int productCount() {
+        return sql.selectOne("Product.count");
+    }
+
+    public ProductDTO findById(Long id) {
+        return sql.selectOne("Product.findById", id);
+    }
+
+    public void approve(Long id) {
+        sql.update("Product.approve", id);
     }
 }

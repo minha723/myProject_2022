@@ -20,8 +20,14 @@
 <div class="container text-center">
 
     <c:choose>
-        <c:when test="${sessionScope.loginId != null}">
-            <button class="btn btn-outline-success" onclick="findAllProduct()">목록</button>
+        <c:when test="${sessionScope.loginVendorId != null}">
+            <button class="btn btn-outline-success" onclick="findAllProduct()"> 상품 목록</button>
+            <button class="btn btn-outline-success" onclick="saveProduct()"> 상품 등록</button>
+            <button class="btn btn-outline-success" onclick="vLogOut()"> 로그아웃</button>
+        </c:when>
+        <c:when test="${sessionScope.loginClientId != null}">
+            <button class="btn btn-outline-success" onclick="findAllProduct()"> 상품 목록</button>
+            <button class="btn btn-outline-success" onclick="cLogOut()"> 로그아웃</button>
         </c:when>
         <c:otherwise>
             <button class="btn btn-outline-success" onclick="cSignUp()">고객 회원가입</button>
@@ -31,9 +37,16 @@
             <button class="btn btn-outline-success" onclick="findAllProduct()">목록</button>
         </c:otherwise>
     </c:choose>
+
+    <c:if test="${sessionScope.loginVendorId eq 'admin'}">
+        <button class="btn btn-outline-success" onclick="approveList()">승인할 목록</button>
+    </c:if>
 </div>
 </body>
 <script>
+    const approveList = () => {
+      location.href="/product/approveList";
+    }
     const cSignUp = () => {
         location.href = "/client/save";
     }
@@ -48,7 +61,17 @@
 
     }
     const findAllProduct = () => {
-
+        location.href = "/product/findAll";
     }
+    const saveProduct = () => {
+      location.href = "/product/save";
+    }
+    const vLogOut = () => {
+      location.href="/vendor/logout";
+    }
+    const cLogOut = () => {
+      location.href="/client/logout";
+    }
+
 </script>
 </html>

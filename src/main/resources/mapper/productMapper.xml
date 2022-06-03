@@ -10,9 +10,21 @@
 
     </insert>
 
-    <select id="findAll" resultType="product">
-        select * from product_table;
+    <select id="findAll" resultType="product" parameterType="java.util.HashMap">
+        select * from product_table order by id desc limit #{start}, #{limit}
     </select>
+
+    <select id="count" resultType="int">
+    select count(id) from product_table
+    </select>
+
+    <select id="findById" resultType="product" parameterType="Long">
+        select * from product_table where id=#{id}
+    </select>
+
+    <update id="approve" parameterType="Long">
+        update product_table set productApproval=1 where id=#{id}
+    </update>
 
 </mapper>
 

@@ -26,6 +26,7 @@
     <c:if test="${sessionScope.loginVendorId eq 'admin'}">
         <button class="btn btn-outline-primary" onclick="findAllVendor()"> 전문가목록 보기</button>
         <button class="btn btn-outline-primary" onclick="findAllClient()"> 고객목록 보기</button>
+        <button class="btn btn-outline-primary" onclick="productApproval()"> 상품 승인이 필요한 목록 </button>
     </c:if>
 </div>
 
@@ -51,5 +52,8 @@
         location.href="/product/save";
     }
 
+    const productApproval = () => {
+      location.href="/product/approveList";
+    }
 </script>
 </html>
