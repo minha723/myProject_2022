@@ -19,7 +19,7 @@ public class ProductService {
     private ProductRepository productRepository;
 
     private static final int BLOCK_LIMIT = 3;
-    private static final int PAGE_LIMIT = 3;
+    private static final int PAGE_LIMIT = 5;
 
     public boolean save(ProductDTO productDTO) throws IOException {
         MultipartFile productFile = productDTO.getProductFile();
@@ -46,6 +46,13 @@ public class ProductService {
         return productRepository.findAll(pagingParam);
     }
 
+    public List<ProductDTO> findAllStar(int page) {
+        int pagingStart = (page - 1) * PAGE_LIMIT;
+        Map<String, Integer> pagingParam = new HashMap<>();
+        pagingParam.put("start", pagingStart);
+        pagingParam.put("limit", PAGE_LIMIT);
+        return productRepository.findAllStar(pagingParam);
+    }
     public PageDTO paging(int page) {
     int productCount = productRepository.productCount();
     int maxPage = (int) (Math.ceil((double) productCount/PAGE_LIMIT));
@@ -67,5 +74,10 @@ public class ProductService {
 
     public void approve(Long id) {
         productRepository.approve(id);
+    }
+
+
+    public List<ProductDTO> search(String q) {
+        return productRepository.search(q);
     }
 }

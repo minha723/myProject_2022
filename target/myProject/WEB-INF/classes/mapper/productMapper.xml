@@ -14,6 +14,10 @@
         select * from product_table order by id desc limit #{start}, #{limit}
     </select>
 
+    <select id="findAllStar" resultType="product" parameterType="java.util.HashMap">
+        select * from product_table order by productStar desc limit #{start}, #{limit}
+    </select>
+
     <select id="count" resultType="int">
     select count(id) from product_table
     </select>
@@ -25,6 +29,11 @@
     <update id="approve" parameterType="Long">
         update product_table set productApproval=1 where id=#{id}
     </update>
+
+    <select id="search" parameterType="String" resultType="product">
+        select * from product_table where productName
+                                              like concat('%', #{q}, '%')
+    </select>
 
 </mapper>
 

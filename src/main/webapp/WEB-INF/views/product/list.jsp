@@ -18,6 +18,17 @@
 <jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
 
 <div class="container">
+    <form action="/product/search" method="get">
+        <input type="text" name="q" placeholder="찾고싶은 상품을 검색해보세요">
+        <input type="submit" value="검색">
+    </form>
+</div>
+
+<div class="container text-end">
+    <button class="btn btn-outline-primary" onclick="starList()">별점순으로 목록보기</button>
+</div>
+
+<div class="container">
     <table class="table table-hover">
         <tr>
             <th>상품번호</th>
@@ -83,7 +94,10 @@
         </c:choose>
     </ul>
 </div>
-
-
 </body>
+<script>
+    const starList = () => {
+      location.href="/product/findAllStar";
+    }
+</script>
 </html>

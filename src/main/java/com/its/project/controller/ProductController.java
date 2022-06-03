@@ -42,6 +42,16 @@ public class ProductController {
         return "product/list";
     }
 
+    @GetMapping("/findAllStar")
+    public String findAllStar(@RequestParam(value = "page", required = false, defaultValue = "1") int page,
+                              Model model){
+        List<ProductDTO> productDTOList = productService.findAllStar(page);
+        PageDTO paging = productService.paging(page);
+        model.addAttribute("productList", productDTOList);
+        model.addAttribute("paging", paging);
+        return "product/list";
+    }
+
     @GetMapping("/approveList")
     public String approveForm(@RequestParam(value = "page", required = false, defaultValue = "1") int page,
                               Model model){
@@ -67,5 +77,12 @@ public class ProductController {
         return "product/detail";
     }
 
+    @GetMapping("/search")
+    public String search(@RequestParam("q") String q,
+                         Model model){
+        List<ProductDTO> productDTOList = productService.search(q);
+        model.addAttribute("productList", productDTOList);
+        return "product/list";
+    }
 
 }

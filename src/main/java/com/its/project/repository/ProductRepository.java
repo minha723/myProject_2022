@@ -33,4 +33,12 @@ public class ProductRepository {
     public void approve(Long id) {
         sql.update("Product.approve", id);
     }
+
+    public List<ProductDTO> findAllStar(Map<String, Integer> pagingParam) {
+        return sql.selectList("Product.findAllStar", pagingParam);
+    }
+
+    public List<ProductDTO> search(String q) {
+        return sql.selectList("Product.search", q);
+    }
 }
