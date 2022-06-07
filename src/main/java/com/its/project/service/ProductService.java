@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -95,7 +96,16 @@ public class ProductService {
         productRepository.update(productDTO);
     }
 
-    public void like(LikeDTO likeDTO) {
-        productRepository.like(likeDTO);
+    public String like(LikeDTO likeDTO) {
+        int likeResult = productRepository.like(likeDTO);
+        if(likeResult>0){
+            return "찜 성공";
+        }else {
+            return "찜 실패";
+        }
+    }
+
+    public LikeDTO findLike(LikeDTO likeDTO) {
+    return productRepository.findLike(likeDTO);
     }
 }

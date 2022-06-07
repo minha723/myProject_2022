@@ -51,7 +51,11 @@ public class ProductRepository {
         sql.update("Product.update", productDTO);
     }
 
-    public void like(LikeDTO likeDTO) {
-        sql.insert("Like.save", likeDTO);
+    public int like(LikeDTO likeDTO) {
+        return sql.insert("Like.save", likeDTO);
+    }
+
+    public LikeDTO findLike(LikeDTO likeDTO) {
+        return sql.selectOne("Like.find", likeDTO);
     }
 }

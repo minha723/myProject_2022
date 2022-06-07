@@ -29,7 +29,14 @@
             <small> 판매자: ${product.vendorId}</small>
         </div>
         <p class="mb-xl-2 border">
-        <i class="bi bi-heart text-end" style="color: red" onclick="like()"></i>
+            <c:choose>
+                <c:when test="${like eq null}">
+                    <i class="bi bi-heart-fill text-md-end" id="likeIcon"></i>
+                </c:when>
+                <c:otherwise>
+                    <i class="bi bi-heart-fill text-end" id="unlikeIcon" style="color:red;"></i>
+                </c:otherwise>
+            </c:choose>
             <br>${product.productDesc}<br> &nbsp;
             <img src="${pageContext.request.contextPath}/productUpload/${product.productFileName}"
                  alt="" height="100" width="100">
@@ -62,8 +69,35 @@
     const approve = () => {
         location.href = "/product/approve?id=${product.id}";
     }
-    const like = () => {
-      location.href="/product/like?id=${product.id}&clientId=${sessionScope.loginClientId}";
-    }
+    <%--const like = () => {--%>
+    <%--  location.href="/product/like?id=${product.id}&clientId=${sessionScope.loginClientId}";--%>
+    <%--}--%>
+
+    $('#likeIcon').click(function (){
+       if("${sessionScope.loginClientId}" == ""){
+            alert("로그인이 필요한 기능입니다. 로그인하시겠습니까?");
+            location.href= "/client/login";
+        }  else {
+           let clientId = '${sessionScope.loginClientId}';
+           let id = '${product.id}';
+
+           $.ajax({
+               type:"post",
+               url:"/product/like",
+               data: {
+                   "id": id,
+                   "clientId": clientId
+               },
+               dataType: "text",
+               success: function (result){
+                   alert(result);
+                   document.getElementById("likeIcon").style.color="red";
+               },error: function (){
+                   alert("오타체크");
+               }
+           })
+       }
+    });
+
 </script>
 </html>

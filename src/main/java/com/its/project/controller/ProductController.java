@@ -79,10 +79,17 @@ public class ProductController {
 
     @GetMapping("/detail")
     public String findById(@RequestParam(value = "page", required = false, defaultValue = "1") int page,
-            @RequestParam("id") Long id, Model model){
+            @RequestParam("id") Long id, Model model, HttpSession session){
         ProductDTO productDTO = productService.findById(id);
+        String clientId = (String) session.getAttribute("loginClientId");
+        LikeDTO likeDTO = new LikeDTO();
+        likeDTO.setProductId(id);
+        likeDTO.setClientId(clientId);
+        LikeDTO findLikeDTO = productService.findLike(likeDTO);
+        System.out.println("findLikeDTO = " + findLikeDTO);
         model.addAttribute("product",productDTO);
         model.addAttribute("paging", page);
+        model.addAttribute("like", findLikeDTO);
         return "product/detail";
     }
 
@@ -121,13 +128,19 @@ public class ProductController {
     }
 
     @GetMapping("/like")
-    public String like(@RequestParam("id") Long productId,
+    public String like(@RequestParam("clientId") String clientId){
+
+        return "product/likeList";
+    }
+
+    @PostMapping("/like")
+    public @ResponseBody String like(@RequestParam("id") Long productId,
                        @RequestParam("clientId") String clientId){
         LikeDTO likeDTO = new LikeDTO();
         likeDTO.setProductId(productId);
         likeDTO.setClientId(clientId);
-        productService.like(likeDTO);
-        return "redirect:/product/detail?id="+productId;
+        String result = productService.like(likeDTO);
+        return result;
     }
 
 }
