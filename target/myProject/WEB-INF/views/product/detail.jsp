@@ -11,8 +11,9 @@
 <html>
 <head>
     <title>Title</title>
-  <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
-  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 </head>
 <body>
 <jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
@@ -28,6 +29,7 @@
             <small> 판매자: ${product.vendorId}</small>
         </div>
         <p class="mb-xl-2 border">
+        <i class="bi bi-heart text-end" style="color: red" onclick="like()"></i>
             <br>${product.productDesc}<br> &nbsp;
             <img src="${pageContext.request.contextPath}/productUpload/${product.productFileName}"
                  alt="" height="100" width="100">
@@ -49,16 +51,19 @@
 </body>
 <script>
     const findAll = () => {
-      location.href="/product/findAll";
+        location.href = "/product/findAll";
     }
     const productUpdate = () => {
-      location.href="/product/update";
+        location.href = "/product/update?id=${product.id}";
     }
     const productDelete = () => {
-      location.href ="/product/delete";
+        location.href = "/product/delete?id=${product.id}";
     }
     const approve = () => {
-      location.href = "/product/approve?id=${product.id}";
+        location.href = "/product/approve?id=${product.id}";
+    }
+    const like = () => {
+      location.href="/product/like?id=${product.id}&clientId=${sessionScope.loginClientId}";
     }
 </script>
 </html>

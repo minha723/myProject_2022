@@ -35,6 +35,15 @@
                                               like concat('%', #{q}, '%')
     </select>
 
+    <delete id="delete" parameterType="Long">
+        delete from product_table where id=#{id}
+    </delete>
+
+    <update id="update" parameterType="product">
+        update product_table set productName=#{productName}, productDesc=#{productDesc},
+                                 productPrice=#{productPrice}, productStar=#{productStar} where id=#{id}
+    </update>
+
 </mapper>
 
 

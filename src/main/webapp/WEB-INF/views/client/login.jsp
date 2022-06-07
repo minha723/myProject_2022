@@ -120,13 +120,18 @@
             box-shadow: none !important;
             border-width: 0 0 1px 0;
         }
+        .login-form {
+            width: 390px;
+            margin: 0 auto;
+            padding: 0;
+        }
     </style>
 
 </head>
 <body>
 <jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
 
-<div class="m text-center center">
+<div class="m text-center login-form">
     <div class="m-dialog m-login">
         <div class="m-content">
 

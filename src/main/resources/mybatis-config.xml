@@ -8,5 +8,6 @@
         <typeAlias type="com.its.project.dto.ProductDTO" alias="product"></typeAlias>
         <typeAlias type="com.its.project.dto.VendorDTO" alias="vendor"></typeAlias>
         <typeAlias type="com.its.project.dto.ReviewDTO" alias="review"></typeAlias>
+        <typeAlias type="com.its.project.dto.LikeDTO" alias="like"></typeAlias>
     </typeAliases>
 </configuration>

@@ -1,5 +1,6 @@
 package com.its.project.service;
 
+import com.its.project.dto.LikeDTO;
 import com.its.project.dto.PageDTO;
 import com.its.project.dto.ProductDTO;
 import com.its.project.repository.ProductRepository;
@@ -79,5 +80,22 @@ public class ProductService {
 
     public List<ProductDTO> search(String q) {
         return productRepository.search(q);
+    }
+
+    public boolean delete(Long id) {
+        int deleteResult =  productRepository.delete(id);
+        if(deleteResult>0){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    public void update(ProductDTO productDTO) {
+        productRepository.update(productDTO);
+    }
+
+    public void like(LikeDTO likeDTO) {
+        productRepository.like(likeDTO);
     }
 }

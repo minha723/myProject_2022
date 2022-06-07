@@ -13,15 +13,17 @@
     <title>Title</title>
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
     <style>
-        .product-list{
+        .product-list {
             max-width: 800px;
             margin: auto;
             padding-bottom: 10px;
         }
-        .small{
+
+        .small {
             color: #51585e;
         }
-        a{
+
+        a {
             background-color: transparent;
             text-decoration: none;
         }
@@ -41,46 +43,25 @@
     <button class="btn btn-sm" onclick="starList()">별점순으로 목록보기</button>
 </div>
 
-<%--<div class="container">--%>
-<%--    <table class="table table-hover">--%>
-<%--        <tr>--%>
-<%--            <th>상품번호</th>--%>
-<%--            <th>상품이름</th>--%>
-<%--            <th>상품평점</th>--%>
-<%--            <th>전문가</th>--%>
-<%--        </tr>--%>
-
-<%--        <c:forEach var="product" items="${productList}">--%>
-<%--            <c:if test="${product.productApproval eq 1}">--%>
-<%--                <tr>--%>
-<%--                    <td> ${product.id} </td>--%>
-<%--                    <td><a href="/product/detail?page=${paging.page}&id=${product.id}"> ${product.productName}</a>></td>--%>
-<%--                    <td>${product.productStar}</td>--%>
-<%--                    <td>${product.vendorId}</td>--%>
-<%--                </tr>--%>
-<%--            </c:if>--%>
-<%--        </c:forEach>--%>
-<%--    </table>--%>
-<%--</div>--%>
-
 <div class="row row-cols-1 row-cols-md-3 g-4 product-list">
-
-<c:forEach var="product" items="${productList}">
-        <div class="col">
-            <div class="card"><a href="/product/detail?page=${paging.page}&id=${product.id}">
-
-                <img src="${pageContext.request.contextPath}/productUpload/${product.productFileName}" class="card-img-top"
-                     alt="..." width="216" height="162" loading="lazy">
-                <div class="card-body">
-                    <p class="card-text small">${product.vendorId}</p>
-                    <h5 class="card-title fw-bold text-black">${product.productName}</h5>
-                    <p class="card-text text-end text-black">${product.productPrice}원</p>
-                    <p class="card-text text-end small">별점: ${product.productStar}점</p>
+    <c:forEach var="product" items="${productList}">
+        <c:if test="${product.productApproval eq 1}">
+            <div class="col table-hover">
+                <div class="card"><a href="/product/detail?page=${paging.page}&id=${product.id}">
+                    <img src="${pageContext.request.contextPath}/productUpload/${product.productFileName}"
+                         class="card-img-top"
+                         alt="..." width="216" height="162" loading="lazy">
+                    <div class="card-body">
+                        <p class="card-text small">${product.vendorId}</p>
+                        <h5 class="card-title fw-bold text-black">${product.productName}</h5>
+                        <p class="card-text text-end text-black">${product.productPrice}원</p>
+                        <p class="card-text text-end small">별점: ${product.productStar}점</p>
+                    </div>
+                </a>
                 </div>
-            </a>
             </div>
-        </div>
-</c:forEach>
+        </c:if>
+    </c:forEach>
 </div>
 
 
@@ -94,7 +75,14 @@
             </c:when>
             <c:otherwise>
                 <li class="page-item">
-                    <a class="page-link" href="/product/findAll?page=${paging.page-1}">[이전]</a>
+                    <c:choose>
+                        <c:when test="${star eq 'star'}">
+                            <a class="page-link" href="/product/findAllStar?page=${paging.page-1}">[이전]</a>
+                        </c:when>
+                        <c:otherwise>
+                            <a class="page-link" href="/product/findAll?page=${paging.page-1}">[이전]</a>
+                        </c:otherwise>
+                    </c:choose>
                 </li>
             </c:otherwise>
         </c:choose>
@@ -108,7 +96,14 @@
                 </c:when>
                 <c:otherwise>
                     <li class="page-item">
-                        <a class="page-link" href="/product/findAll?page=${i}">${i}</a>
+                        <c:choose>
+                            <c:when test="${star eq 'star'}">
+                                <a class="page-link" href="/product/findAllStar?page=${i}">${i}</a>
+                            </c:when>
+                            <c:otherwise>
+                                <a class="page-link" href="/product/findAll?page=${i}">${i}</a>
+                            </c:otherwise>
+                        </c:choose>
                     </li>
                 </c:otherwise>
             </c:choose>
@@ -122,7 +117,14 @@
             </c:when>
             <c:otherwise>
                 <li class="page-item">
-                    <a class="page-link" href="/product/findAll?page=${paging.page+1}">[다음]</a>
+                    <c:choose>
+                        <c:when test="${star eq 'star'}">
+                            <a class="page-link" href="/product/findAllStar?page=${paging.page+1}">[다음]</a>
+                        </c:when>
+                        <c:otherwise>
+                            <a class="page-link" href="/product/findAll?page=${paging.page+1}">[다음]</a>
+                        </c:otherwise>
+                    </c:choose>
                 </li>
             </c:otherwise>
         </c:choose>
@@ -131,7 +133,7 @@
 </body>
 <script>
     const starList = () => {
-      location.href="/product/findAllStar";
+        location.href = "/product/findAllStar";
     }
 </script>
 </html>

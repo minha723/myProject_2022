@@ -1,5 +1,6 @@
 package com.its.project.repository;
 
+import com.its.project.dto.LikeDTO;
 import com.its.project.dto.ProductDTO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,5 +41,17 @@ public class ProductRepository {
 
     public List<ProductDTO> search(String q) {
         return sql.selectList("Product.search", q);
+    }
+
+    public int delete(Long id) {
+        return sql.delete("Product.delete", id);
+    }
+
+    public void update(ProductDTO productDTO) {
+        sql.update("Product.update", productDTO);
+    }
+
+    public void like(LikeDTO likeDTO) {
+        sql.insert("Like.save", likeDTO);
     }
 }
