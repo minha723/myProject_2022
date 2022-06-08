@@ -4,7 +4,10 @@
 
 
 <mapper namespace="Review">
-
+    <insert id="save" parameterType="review">
+        insert into review_table (productId, clientId, reviewContents, reviewStar, reviewCreatedTime)
+        values (#{productId}, #{clientId}, #{reviewContents}, #{reviewStar}, now())
+    </insert>
 </mapper>
 
 

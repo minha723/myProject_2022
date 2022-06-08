@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="History">
+    <insert id="save" parameterType="history">
+        insert into history_table(vendorId, clientId, productId, productPrice, historyCreatedTime) values (#{vendorId}, #{clientId}, #{productId}, #{productPrice}, now())
+    </insert>
+
+    <select id="findByClientId" parameterType="String" resultType="history">
+        select * from history_table where clientId=#{clientId}
+    </select>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -81,4 +81,6 @@ public class ProductRepository {
     public List<HistoryDTO> findHistory(String clientId) {
         return sql.selectList("History.findByClientId", clientId);
     }
+
+
 }

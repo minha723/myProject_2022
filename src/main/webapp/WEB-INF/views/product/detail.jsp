@@ -27,7 +27,7 @@
         </div>
         <div class="border border-top-0 d-flex justify-content-between">
             <small> 판매자: ${product.vendorId}</small>
-            <small class="text-md-end"> 가격: ${product.productPrice}</small>
+            <small class="text-md-end"> 가격: ${product.productPrice}원</small>
         </div>
         <p class="mb-xl-2 border">
             <c:choose>
@@ -58,6 +58,8 @@
         <button class="btn btn-outline-danger" onclick="productDelete()">삭제</button>
         <button class="btn btn-outline-danger" onclick="approve()">승인</button>
     </c:if>
+
+
 </div>
 </body>
 <script>

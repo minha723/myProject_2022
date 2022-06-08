@@ -1,7 +1,9 @@
 package com.its.project.controller;
 
+import com.its.project.dto.ClientDTO;
 import com.its.project.dto.ProductDTO;
 import com.its.project.dto.ReviewDTO;
+import com.its.project.service.ClientService;
 import com.its.project.service.ProductService;
 import com.its.project.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,8 @@ public class ReviewController {
 
     @Autowired
     private ProductService productService;
+    @Autowired
+    private ClientService clientService;
 
     @GetMapping("/save")
     public String saveForm(@RequestParam("id") Long productId,
