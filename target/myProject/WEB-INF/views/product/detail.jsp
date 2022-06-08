@@ -69,9 +69,7 @@
     const approve = () => {
         location.href = "/product/approve?id=${product.id}";
     }
-    <%--const like = () => {--%>
-    <%--  location.href="/product/like?id=${product.id}&clientId=${sessionScope.loginClientId}";--%>
-    <%--}--%>
+
 
     $('#likeIcon').click(function (){
        if("${sessionScope.loginClientId}" == ""){
@@ -90,8 +88,42 @@
                },
                dataType: "text",
                success: function (result){
-                   alert(result);
+                   if(result == "ok"){
+                       alert("찜하기 성공")
+                   }else {
+                       alert("찜하기 실패")
+                   }
                    document.getElementById("likeIcon").style.color="red";
+               },error: function (){
+                   alert("오타체크");
+               }
+           })
+       }
+    });
+
+$('#unlikeIcon').click(function (){
+       if("${sessionScope.loginClientId}" == ""){
+            alert("로그인이 필요한 기능입니다. 로그인하시겠습니까?");
+            location.href= "/client/login";
+        }  else {
+           let clientId = '${sessionScope.loginClientId}';
+           let id = '${product.id}';
+
+           $.ajax({
+               type:"post",
+               url:"/product/unlike",
+               data: {
+                   "id": id,
+                   "clientId": clientId
+               },
+               dataType: "text",
+               success: function (result){
+                   if(result == "ok"){
+                       alert("찜취소 성공")
+                   }else {
+                       alert("찜취소 실패")
+                   }
+                   document.getElementById("unlikeIcon").style.color="black";
                },error: function (){
                    alert("오타체크");
                }
