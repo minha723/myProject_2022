@@ -16,6 +16,10 @@
         select * from like_table where clientId=#{clientId}
     </select>
 
+    <delete id="delete" parameterType="like">
+        delete from like_table where clientId=#{clientId} and productId=#{productId}
+    </delete>
+
 </mapper>
 
 

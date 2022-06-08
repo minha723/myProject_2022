@@ -62,4 +62,8 @@ public class ProductRepository {
     public List<LikeDTO> likeList(String clientId) {
         return  sql.selectList("Like.findAll", clientId);
     }
+
+    public int unlike(LikeDTO unlikeDTO) {
+        return sql.delete("Like.delete", unlikeDTO);
+    }
 }

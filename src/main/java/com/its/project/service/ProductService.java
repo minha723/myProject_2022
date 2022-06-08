@@ -97,9 +97,9 @@ public class ProductService {
     public String like(LikeDTO likeDTO) {
         int likeResult = productRepository.like(likeDTO);
         if(likeResult>0){
-            return "찜 성공";
+            return "ok";
         }else {
-            return "찜 실패";
+            return "no";
         }
     }
 
@@ -117,5 +117,14 @@ public class ProductService {
             ProductDTO likeProduct = productRepository.findById(like.getProductId());
             productList.add(likeProduct);
         } return productList;
+    }
+
+    public String unlike(LikeDTO unlikeDTO) {
+        int unlikeResult = productRepository.unlike(unlikeDTO);
+        if(unlikeResult>0){
+            return "ok";
+        }else {
+            return "no";
+        }
     }
 }

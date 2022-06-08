@@ -144,5 +144,14 @@ public class ProductController {
         String result = productService.like(likeDTO);
         return result;
     }
+    @PostMapping("/unlike")
+    public @ResponseBody String unlike(@RequestParam("id") Long productId,
+                                     @RequestParam("clientId") String clientId){
+        LikeDTO unlikeDTO = new LikeDTO();
+        unlikeDTO.setProductId(productId);
+        unlikeDTO.setClientId(clientId);
+        String result = productService.unlike(unlikeDTO);
+        return result;
+    }
 
 }

@@ -7,9 +7,19 @@
     <insert id="save" parameterType="like">
         insert into like_table(productId, clientId) values (#{productId}, #{clientId})
     </insert>
+
     <select id="find" parameterType="like" resultType="like">
         select * from like_table where productId=#{productId} and clientId=#{clientId}
     </select>
+
+    <select id="findAll" parameterType="String" resultType="like">
+        select * from like_table where clientId=#{clientId}
+    </select>
+
+    <delete id="delete" parameterType="like">
+        delete from like_table where clientId=#{clientId} and productId=#{productId}
+    </delete>
+
 </mapper>
 
 

@@ -27,6 +27,7 @@
         </c:when>
         <c:when test="${sessionScope.loginClientId != null}">
             <button class="btn btn-outline-success" onclick="findAllProduct()"> 상품 목록</button>
+            <button class="btn btn-outline-success" onclick="findLikeProduct()"> 찜한 상품 목록</button>
             <button class="btn btn-outline-success" onclick="cLogOut()"> 로그아웃</button>
         </c:when>
         <c:otherwise>
@@ -62,6 +63,9 @@
     }
     const findAllProduct = () => {
         location.href = "/product/findAll";
+    }
+    const findLikeProduct = () => {
+        location.href = "/product/like?clientId=${sessionScope.loginClientId}";
     }
     const saveProduct = () => {
       location.href = "/product/save";
