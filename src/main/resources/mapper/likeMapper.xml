@@ -7,24 +7,15 @@
     <insert id="save" parameterType="like">
         insert into like_table(productId, clientId) values (#{productId}, #{clientId})
     </insert>
+
     <select id="find" parameterType="like" resultType="like">
         select * from like_table where productId=#{productId} and clientId=#{clientId}
     </select>
-    
-<!--    <resultMap id="likeVo" type="likeVo">-->
-<!--        <result column="productId" property="productId"></result>-->
-<!--        <result column="clientId" property="clientId"></result>-->
-<!--    </resultMap>-->
-<!--    <resultMap id="productVo" type="productVo">-->
-<!--        <result column="productName" property="productName"></result>-->
-<!--        <result column="productDesc" property="productDesc"></result>-->
-<!--        <result column="productPrice" property="productPrice"></result>-->
-<!--        <collection property="likeVo" resultMap="likeVo"></collection>-->
-<!--    </resultMap>-->
-<!--    <select id="likeList" parameterType="productVo" resultMap="productVo">-->
-<!--        select a.productId, b.productName, b.productDesc, b.productPrice-->
-<!--            from like_table as a join product_table as b on a.productId = b.productId and a.clientId=#{clientId}-->
-<!--    </select>-->
+
+    <select id="findAll" parameterType="String" resultType="like">
+        select * from like_table where clientId=#{clientId}
+    </select>
+
 </mapper>
 
 

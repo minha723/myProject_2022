@@ -69,9 +69,7 @@
     const approve = () => {
         location.href = "/product/approve?id=${product.id}";
     }
-    <%--const like = () => {--%>
-    <%--  location.href="/product/like?id=${product.id}&clientId=${sessionScope.loginClientId}";--%>
-    <%--}--%>
+
 
     $('#likeIcon').click(function (){
        if("${sessionScope.loginClientId}" == ""){

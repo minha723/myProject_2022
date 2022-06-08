@@ -11,9 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class ProductService {
@@ -107,5 +105,17 @@ public class ProductService {
 
     public LikeDTO findLike(LikeDTO likeDTO) {
     return productRepository.findLike(likeDTO);
+    }
+
+    public List<ProductDTO> likeList(String clientId) {
+        List<LikeDTO> likeList = productRepository.likeList(clientId);
+        List<ProductDTO> productList = new ArrayList<>();
+        if(likeList == null){
+            return null;
+        }
+        for (LikeDTO like: likeList) {
+            ProductDTO likeProduct = productRepository.findById(like.getProductId());
+            productList.add(likeProduct);
+        } return productList;
     }
 }

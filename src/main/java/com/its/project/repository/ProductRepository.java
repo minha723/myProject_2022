@@ -58,4 +58,8 @@ public class ProductRepository {
     public LikeDTO findLike(LikeDTO likeDTO) {
         return sql.selectOne("Like.find", likeDTO);
     }
+
+    public List<LikeDTO> likeList(String clientId) {
+        return  sql.selectList("Like.findAll", clientId);
+    }
 }

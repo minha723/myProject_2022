@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -128,8 +129,9 @@ public class ProductController {
     }
 
     @GetMapping("/like")
-    public String like(@RequestParam("clientId") String clientId){
-
+    public String likeList(@RequestParam("clientId") String clientId, Model model){
+        List<ProductDTO> productDTOList = productService.likeList(clientId);
+        model.addAttribute("productList", productDTOList);
         return "product/likeList";
     }
 
