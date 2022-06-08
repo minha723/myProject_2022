@@ -77,4 +77,8 @@ public class ProductRepository {
         sql.update("Client.updatePoint", historyDTO);
         return sql.insert("History.save", historyDTO);
     }
+
+    public List<HistoryDTO> findHistory(String clientId) {
+        return sql.selectList("History.findByClientId", clientId);
+    }
 }

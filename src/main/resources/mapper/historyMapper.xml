@@ -8,6 +8,10 @@
         insert into history_table(vendorId, clientId, productId, productPrice, historyCreatedTime) values (#{vendorId}, #{clientId}, #{productId}, #{productPrice}, now())
     </insert>
 
+    <select id="findByClientId" parameterType="String" resultType="history">
+        select * from history_table where clientId=#{clientId}
+    </select>
+
 </mapper>
 
 

@@ -167,4 +167,11 @@ public class ProductController {
             return "client/purchase-fail";
         }
     }
+
+    @GetMapping("/history")
+    public String history(@RequestParam("clientId") String clientId, Model model){
+        List<ProductDTO> productDTOList = productService.history(clientId);
+        model.addAttribute("productList", productDTOList);
+        return "product/history";
+    }
 }

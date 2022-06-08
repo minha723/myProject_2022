@@ -155,4 +155,16 @@ public class ProductService {
             return false;
         }
     }
+
+    public List<ProductDTO> history(String clientId) {
+        List<HistoryDTO> historyDTOList = productRepository.findHistory(clientId);
+        List<ProductDTO> productDTOList = new ArrayList<>();
+        if(historyDTOList == null){
+            return null;
+        }
+            for (HistoryDTO h: historyDTOList) {
+                ProductDTO productDTO = productRepository.findById(h.getProductId());
+                productDTOList.add(productDTO);
+            }return productDTOList;
+    }
 }
