@@ -23,6 +23,7 @@
         <c:when test="${sessionScope.loginVendorId != null}">
             <button class="btn btn-outline-success" onclick="findAllProduct()"> 상품 목록</button>
             <button class="btn btn-outline-success" onclick="saveProduct()"> 상품 등록</button>
+            <button class="btn btn-outline-success" onclick="findPoint()"> 포인트 보기</button>
             <button class="btn btn-outline-success" onclick="vLogOut()"> 로그아웃</button>
         </c:when>
         <c:when test="${sessionScope.loginClientId != null}">
@@ -79,6 +80,9 @@
     }
     const cLogOut = () => {
       location.href="/client/logout";
+    }
+    const findPoint = () => {
+      location.href="/vendor/point?id=${sessionScope.loginVId}";
     }
 
 </script>

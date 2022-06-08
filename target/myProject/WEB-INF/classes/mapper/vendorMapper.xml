@@ -38,6 +38,10 @@
     <update id="updatePoint" parameterType="history">
         update vendor_table set vendorPoint=vendorPoint+#{productPrice} where vendorId=#{vendorId};
     </update>
+
+    <select id="findPoint" parameterType="Long" resultType="vendor">
+        select * from vendor_table where id=#{id}
+    </select>
 </mapper>
 
 

@@ -27,15 +27,15 @@
         </div>
         <div class="border border-top-0 d-flex justify-content-between">
             <small> 판매자: ${product.vendorId}</small>
-            <small class="text-md-end"> 가격: ${product.productPrice}</small>
+            <small class="text-md-end"> 가격: ${product.productPrice}원</small>
         </div>
         <p class="mb-xl-2 border">
             <c:choose>
                 <c:when test="${like eq null}">
-                    <i class="bi bi-heart-fill text-md-end" id="likeIcon"></i>
+                    <i class="bi bi-heart-fill fs-4" id="likeIcon"></i>
                 </c:when>
                 <c:otherwise>
-                    <i class="bi bi-heart-fill text-end" id="unlikeIcon" style="color:red;"></i>
+                    <i class="bi bi-heart-fill fs-4" id="unlikeIcon" style="color:red;"></i>
                 </c:otherwise>
             </c:choose>
             <br>${product.productDesc}<br> &nbsp;
@@ -58,6 +58,38 @@
         <button class="btn btn-outline-danger" onclick="productDelete()">삭제</button>
         <button class="btn btn-outline-danger" onclick="approve()">승인</button>
     </c:if>
+
+    <div id="comment-list">
+        <table class="table">
+            <tr>
+                <th>상품후기번호</th>
+                <th>작성자</th>
+                <th>내용</th>
+                <th>작성시간</th>
+                <th>별점</th>
+                <th>삭제</th>
+            </tr>
+            <c:forEach items="${reviewList}" var="review">
+                <tr>
+                    <td>${review.id}</td>
+                    <td>${review.clientId}</td>
+                    <td>${review.reviewContents}</td>
+                    <td><fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss"
+                                        value="${review.reviewCreatedTime}"></fmt:formatDate></td>
+                    <td>${review.reviewStar}</td>
+                    <c:choose>
+                        <c:when test="${review.clientId eq sessionScope.loginClientId}">
+                            <td><a href="/review/delete?id=${review.id}&productId=${review.productId}">삭제</a></td>
+                        </c:when>
+                        <c:otherwise>
+                            <td></td>
+                        </c:otherwise>
+                    </c:choose>
+                </tr>
+            </c:forEach>
+        </table>
+    </div>
+
 </div>
 </body>
 <script>

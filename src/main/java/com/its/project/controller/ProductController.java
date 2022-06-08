@@ -1,10 +1,8 @@
 package com.its.project.controller;
 
-import com.its.project.dto.LikeDTO;
-import com.its.project.dto.PageDTO;
-import com.its.project.dto.ProductDTO;
-import com.its.project.dto.VendorDTO;
+import com.its.project.dto.*;
 import com.its.project.service.ProductService;
+import com.its.project.service.ReviewService;
 import com.its.project.service.VendorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,9 +20,10 @@ public class ProductController {
 
     @Autowired
     private ProductService productService;
-
     @Autowired
     private VendorService vendorService;
+    @Autowired
+    private ReviewService reviewService;
 
     @GetMapping("/save")
     public String saveForm() {
@@ -82,15 +81,16 @@ public class ProductController {
     public String findById(@RequestParam(value = "page", required = false, defaultValue = "1") int page,
                            @RequestParam("id") Long id, Model model, HttpSession session) {
         ProductDTO productDTO = productService.findById(id);
+        List<ReviewDTO> reviewDTOList = reviewService.findByProductId(id);
         String clientId = (String) session.getAttribute("loginClientId");
         LikeDTO likeDTO = new LikeDTO();
         likeDTO.setProductId(id);
         likeDTO.setClientId(clientId);
         LikeDTO findLikeDTO = productService.findLike(likeDTO);
-        System.out.println("findLikeDTO = " + findLikeDTO);
         model.addAttribute("product", productDTO);
         model.addAttribute("paging", page);
         model.addAttribute("like", findLikeDTO);
+        model.addAttribute("reviewList", reviewDTOList);
         return "product/detail";
     }
 

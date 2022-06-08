@@ -39,4 +39,8 @@ public class VendorRepository {
     public int update(VendorDTO vendorDTO) {
         return sql.update("Vendor.update", vendorDTO);
     }
+
+    public VendorDTO findPoint(Long id) {
+        return sql.selectOne("Vendor.findPoint", id);
+    }
 }

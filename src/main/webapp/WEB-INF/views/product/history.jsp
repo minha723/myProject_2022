@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
     <style>
         .width{
-            max-width: 700px;
+            max-width: 800px;
             margin: auto;
         }
     </style>

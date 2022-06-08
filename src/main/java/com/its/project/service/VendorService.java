@@ -66,4 +66,8 @@ public class VendorService {
             return false;
         }
     }
+
+    public VendorDTO findPoint(Long id) {
+        return vendorRepository.findPoint(id);
+    }
 }

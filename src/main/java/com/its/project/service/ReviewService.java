@@ -7,6 +7,8 @@ import com.its.project.repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ReviewService {
     @Autowired
@@ -25,5 +27,13 @@ public class ReviewService {
         }
         productService.update(productDTO);
         reviewRepository.save(reviewDTO);
+    }
+
+    public List<ReviewDTO> findByProductId(Long id) {
+        return reviewRepository.findByProductId(id);
+    }
+
+    public void delete(Long id) {
+        reviewRepository.delete(id);
     }
 }

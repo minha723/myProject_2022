@@ -136,12 +136,12 @@
                 <option value="5">5점</option>
             </select>
         </div>
-
         <div class="form-group">
             <button type="submit" class="btn btn-primary btn-block btn-lg">상품 후기 작성</button>
         </div>
-
     </form>
+    <div class="text-center">작성된 후기는 수정이 불가합니다.</div>
+
 </div>
 </body>
 

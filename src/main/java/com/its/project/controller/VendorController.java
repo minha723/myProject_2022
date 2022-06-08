@@ -2,6 +2,7 @@ package com.its.project.controller;
 
 import com.its.project.dto.VendorDTO;
 import com.its.project.service.VendorService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -103,4 +104,10 @@ public class VendorController {
         return "index";
     }
 
+    @GetMapping("/point")
+    public String findPoint(@RequestParam("id") Long id, Model model){
+        VendorDTO vendorDTO = vendorService.findPoint(id);
+        model.addAttribute("vendor", vendorDTO);
+        return "vendor/point";
+    }
 }

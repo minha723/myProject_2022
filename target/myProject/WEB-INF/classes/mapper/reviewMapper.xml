@@ -8,6 +8,14 @@
         insert into review_table (productId, clientId, reviewContents, reviewStar, reviewCreatedTime)
         values (#{productId}, #{clientId}, #{reviewContents}, #{reviewStar}, now())
     </insert>
+
+    <select id="findByProductId" parameterType="Long" resultType="review">
+        select * from review_table where productId=#{productId}
+    </select>
+
+    <delete id="delete" parameterType="Long">
+        delete from review_table where id=#{id}
+    </delete>
 </mapper>
 
 
