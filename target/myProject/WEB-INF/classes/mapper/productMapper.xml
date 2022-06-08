@@ -11,11 +11,15 @@
     </insert>
 
     <select id="findAll" resultType="product" parameterType="java.util.HashMap">
-        select * from product_table order by id desc limit #{start}, #{limit}
+        select * from product_table where productApproval=1 order by id desc limit #{start}, #{limit}
+    </select>
+
+    <select id="findApproveList" resultType="product" parameterType="java.util.HashMap">
+        select * from product_table where productApproval=0 order by id desc limit #{start}, #{limit}
     </select>
 
     <select id="findAllStar" resultType="product" parameterType="java.util.HashMap">
-        select * from product_table order by productStar desc limit #{start}, #{limit}
+        select * from product_table where productApproval=1 order by productStar desc limit #{start}, #{limit}
     </select>
 
     <select id="count" resultType="int">

@@ -45,7 +45,6 @@
 
 <div class="row row-cols-1 row-cols-md-3 g-4 product-list">
     <c:forEach var="product" items="${productList}">
-        <c:if test="${product.productApproval eq 1}">
             <div class="col table-hover">
                 <div class="card"><a href="/product/detail?page=${paging.page}&id=${product.id}">
                     <img src="${pageContext.request.contextPath}/productUpload/${product.productFileName}"
@@ -60,7 +59,6 @@
                 </a>
                 </div>
             </div>
-        </c:if>
     </c:forEach>
 </div>
 

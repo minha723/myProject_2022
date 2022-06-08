@@ -35,6 +35,9 @@
                                 vendorMobile=#{vendorMobile} where id=#{id}
     </update>
 
+    <update id="updatePoint" parameterType="history">
+        update vendor_table set vendorPoint=vendorPoint+#{productPrice} where vendorId=#{vendorId};
+    </update>
 </mapper>
 
 

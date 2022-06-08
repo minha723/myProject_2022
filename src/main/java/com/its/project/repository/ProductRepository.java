@@ -1,5 +1,6 @@
 package com.its.project.repository;
 
+import com.its.project.dto.HistoryDTO;
 import com.its.project.dto.LikeDTO;
 import com.its.project.dto.ProductDTO;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -65,5 +66,15 @@ public class ProductRepository {
 
     public int unlike(LikeDTO unlikeDTO) {
         return sql.delete("Like.delete", unlikeDTO);
+    }
+
+    public List<ProductDTO> findApproveList(Map<String, Integer> pagingParam) {
+        return sql.selectList("Product.findApproveList", pagingParam);
+    }
+
+    public int purchase(HistoryDTO historyDTO) {
+        sql.update("Vendor.updatePoint", historyDTO);
+        sql.update("Client.updatePoint", historyDTO);
+        return sql.insert("History.save", historyDTO);
     }
 }

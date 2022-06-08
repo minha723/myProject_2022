@@ -27,6 +27,7 @@
         </div>
         <div class="border border-top-0 d-flex justify-content-between">
             <small> 판매자: ${product.vendorId}</small>
+            <small class="text-md-end"> 가격: ${product.productPrice}</small>
         </div>
         <p class="mb-xl-2 border">
             <c:choose>
@@ -44,6 +45,9 @@
     </div>
 
     <button class="btn btn-outline-info" onclick="findAll()">목록</button>
+    <c:if test="${sessionScope.loginClientId != null}">
+        <button class="btn btn-outline-warning" onclick="productPurchase()">구매</button>
+    </c:if>
 
     <c:if test="${sessionScope.loginVendorId eq product.vendorId}">
         <button class="btn btn-outline-warning" onclick="productUpdate()">수정</button>
@@ -68,6 +72,9 @@
     }
     const approve = () => {
         location.href = "/product/approve?id=${product.id}";
+    }
+    const productPurchase = () => {
+      location.href="/product/purchase?id=${product.id}";
     }
 
 

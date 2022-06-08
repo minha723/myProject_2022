@@ -10,5 +10,6 @@ public class HistoryDTO {
     private String vendorId;
     private String clientId;
     private Long productId;
-    private Timestamp createdTime;
+    private Long productPrice;
+    private Timestamp historyCreatedTime;
 }

@@ -1,8 +1,6 @@
 package com.its.project.service;
 
-import com.its.project.dto.LikeDTO;
-import com.its.project.dto.PageDTO;
-import com.its.project.dto.ProductDTO;
+import com.its.project.dto.*;
 import com.its.project.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +15,9 @@ import java.util.*;
 public class ProductService {
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private ClientService clientService;
 
     private static final int BLOCK_LIMIT = 3;
     private static final int PAGE_LIMIT = 6;
@@ -125,6 +126,33 @@ public class ProductService {
             return "ok";
         }else {
             return "no";
+        }
+    }
+
+    public List<ProductDTO> findApproveList(int page) {
+        int pagingStart = (page - 1) * PAGE_LIMIT;
+        Map<String, Integer> pagingParam = new HashMap<>();
+        pagingParam.put("start", pagingStart);
+        pagingParam.put("limit", PAGE_LIMIT);
+        return productRepository.findApproveList(pagingParam);
+    }
+
+    public boolean purchase(ProductDTO productDTO, Long loginCId) {
+        ClientDTO clientDTO = clientService.findById(loginCId);
+        HistoryDTO historyDTO = new HistoryDTO();
+        if(clientDTO.getClientPoint() >= productDTO.getProductPrice()){
+            historyDTO.setProductId(productDTO.getId());
+            historyDTO.setClientId(clientDTO.getClientId());
+            historyDTO.setVendorId(productDTO.getVendorId());
+            historyDTO.setProductPrice(productDTO.getProductPrice());
+            int result = productRepository.purchase(historyDTO);
+            if(result>0){
+                return true;
+            }else {
+                return false;
+            }
+        }else{
+            return false;
         }
     }
 }
