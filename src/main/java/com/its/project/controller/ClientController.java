@@ -91,6 +91,11 @@ public class ClientController {
         return "client/login";
     }
 
+    @GetMapping("/kakaoLogin")
+    public String loginKakao(){
+        return "client/kakaoLogin";
+    }
+
     @PostMapping("login")
     public String login(@ModelAttribute ClientDTO clientDTO, HttpSession session) {
         ClientDTO cLogin = clientService.login(clientDTO);

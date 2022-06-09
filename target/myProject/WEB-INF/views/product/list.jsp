@@ -14,16 +14,15 @@
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
     <style>
         .product-list {
-            max-width: 800px;
-            margin: auto;
             padding-bottom: 10px;
         }
+
 
         .small {
             color: #51585e;
         }
 
-        a {
+        .product-list a {
             background-color: transparent;
             text-decoration: none;
         }
@@ -43,8 +42,9 @@
     <button class="btn btn-sm" onclick="starList()">별점순으로 목록보기</button>
 </div>
 
-<div class="row row-cols-1 row-cols-md-3 g-4 product-list">
-    <c:forEach var="product" items="${productList}">
+<div class="container-md product-list">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <c:forEach var="product" items="${productList}">
             <div class="col table-hover">
                 <div class="card"><a href="/product/detail?page=${paging.page}&id=${product.id}">
                     <img src="${pageContext.request.contextPath}/productUpload/${product.productFileName}"
@@ -59,7 +59,8 @@
                 </a>
                 </div>
             </div>
-    </c:forEach>
+        </c:forEach>
+    </div>
 </div>
 
 
