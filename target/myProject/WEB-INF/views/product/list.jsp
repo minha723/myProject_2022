@@ -15,6 +15,8 @@
     <style>
         .product-list {
             padding-bottom: 10px;
+            max-width: 900px;
+            margin-left: 400px;
         }
 
 
@@ -42,7 +44,8 @@
     <button class="btn btn-sm" onclick="starList()">별점순으로 목록보기</button>
 </div>
 
-<div class="container-md product-list">
+<div class="product-list">
+
     <div class="row row-cols-1 row-cols-md-3 g-4">
         <c:forEach var="product" items="${productList}">
             <div class="col table-hover">
