@@ -158,6 +158,10 @@ public class ProductService {
 
     public List<ProductDTO> history(String clientId) {
         List<HistoryDTO> historyDTOList = productRepository.findHistory(clientId);
+        List<Map<String, Object>> list = productRepository.findHistoryJoin(clientId);
+        for (Map<String, Object> map: list) {
+            System.out.println("map 성공" + map.get("HIS_ID"));
+        }
         List<ProductDTO> productDTOList = new ArrayList<>();
         if(historyDTOList == null){
             return null;

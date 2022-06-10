@@ -83,4 +83,7 @@ public class ProductRepository {
     }
 
 
+    public List<Map<String, Object>> findHistoryJoin(String clientId) {
+        return sql.selectList("Product.findHistoryJoin", clientId);
+    }
 }

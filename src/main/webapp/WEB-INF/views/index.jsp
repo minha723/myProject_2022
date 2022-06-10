@@ -39,7 +39,6 @@
             <button class="btn btn-outline-success" onclick="cLogIn()">고객 로그인</button>
             <button class="btn btn-outline-success" onclick="vLogIn()">전문가 로그인</button>
             <button class="btn btn-outline-success" onclick="findAllProduct()">목록</button>
-            <button class="btn btn-outline-success" onclick="kakaoSignup()">카카오</button>
         </c:otherwise>
     </c:choose>
 

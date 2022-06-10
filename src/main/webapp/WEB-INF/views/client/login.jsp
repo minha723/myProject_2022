@@ -27,8 +27,8 @@
 
         .m-login .m-content {
             padding: 20px;
-            border-radius: 5px;
-            border: none;
+            border-radius: 12px;
+            border: 1px solid darkgray;
         }
 
         .m-login .m-header {
@@ -53,7 +53,7 @@
         }
 
         .m-login .m-footer {
-            background: #ecf0f1;
+            background: #333333;
             border-color: #dee4e7;
             text-align: center;
             justify-content: center;
@@ -65,21 +65,6 @@
         .m-login .m-footer a {
             color: #999;
         }
-
-        /*.m-login .avatar {*/
-        /*    position: absolute;*/
-        /*    margin: 0 auto;*/
-        /*    left: 0;*/
-        /*    right: 0;*/
-        /*    top: -70px;*/
-        /*    width: 95px;*/
-        /*    height: 95px;*/
-        /*    border-radius: 50%;*/
-        /*    z-index: 9;*/
-        /*    background: #34b7a7;*/
-        /*    padding: 15px;*/
-        /*    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);*/
-        /*}*/
 
         .m-login.m-dialog {
             margin-top: 30px;
@@ -104,16 +89,11 @@
             outline: none;
         }
 
-        .ava {
-            font-size: 60px;
-            position: relative;
-            left: 9px;
-            top: -10px;
-            color: #fff;
-        }
-
         .form-group {
             margin-bottom: 20px;
+        }
+        .form-group btn {
+            margin-bottom: -10px;
         }
 
         .form-group .form-control {
@@ -131,6 +111,7 @@
             margin-top: 10px;
         }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 
 </head>
 <body>
@@ -153,14 +134,14 @@
                     <div class="form-group">
                             <input type="password" class="form-control" name="clientPassword" placeholder="비밀번호" required="required">
                     </div>
-                    <div class="form-group">
+                    <div class="login-btn">
                         <button class="btn btn-primary btn-lg btn-block login-btn" onclick="cLogin()" style="font-weight: bolder;"><p style="color: white;">로그인</p></button>
                     </div>
                 </form>
 <%--                <a class="btn-outline-primary" href="/client/kakaoLogin">카카오</a>--%>
-                <a id="custom-login-btn" href="javascript: kakaoLogin();"><img src="//k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" alt="카카오 로그인 버튼" width="222" height="50" ></a>
+                <a id="custom-login-btn" href="javascript: kakaoLogin();"><img src="/resources/img/kakao_login_medium_narrow.png" alt="카카오 로그인 버튼" width="222" height="50" ></a>
 <%--                <button class="api-btn" onclick="kakaoLogout()">카카오 로그아웃</button>--%>
-                <button class="api-btn" onclick="kakaoDelete()">카카오 탈퇴</button>
+<%--                <button class="api-btn" onclick="kakaoDelete()">카카오 탈퇴</button>--%>
             </div>
 
             <div class="m-footer">

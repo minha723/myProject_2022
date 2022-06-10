@@ -6,9 +6,13 @@
 <mapper namespace="Client">
 
     <insert id="save" parameterType="client">
-        insert into client_table(clientId, clientPassword, clientName, clientEmail, clientMobile)
-        values (#{clientId}, #{clientPassword}, #{clientName}, #{clientEmail}, #{clientMobile})
+        insert into client_table(clientId, clientPassword, clientName, clientEmail, clientMobile, clientKakaoId)
+        values (#{clientId}, #{clientPassword}, #{clientName}, #{clientEmail}, #{clientMobile}, #{clientKakaoId})
     </insert>
+
+    <select id="saveReturn" resultType="client" parameterType="client">
+        select * from client_table where clientId=#{clientId}
+    </select>
 
     <select id="duplicateCheck" parameterType="String" resultType="client">
         select * from client_table where clientId=#{clientId}
@@ -25,6 +29,11 @@
     <select id="findById" resultType="client" parameterType="Long">
         select * from client_table where id=#{id}
     </select>
+
+    <select id="findByKakaoId" resultType="client" parameterType="String">
+        select * from client_table where clientKakaoId=#{clientKakaoId}
+    </select>
+
     <delete id="delete" parameterType="Long">
         delete from client_table where id=#{id}
     </delete>
