@@ -29,9 +29,19 @@
 </div>
 
 </body>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+
 <script>
+
     const logOut = () => {
-     location.href="/client/logout";
+        window.Kakao.init("bb7bb13a26ef2108634f4d54a66d6588");
+        if (!Kakao.Auth.getAccessToken()) {
+            location.href="/client/logout";
+        }
+        Kakao.Auth.logout(function(response) {
+            alert(response +' logout');
+            location.href="/client/logout";
+        });
     }
 
     const findAllClient = () => {

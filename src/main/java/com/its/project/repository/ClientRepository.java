@@ -16,8 +16,9 @@ public class ClientRepository {
         return sql.selectOne("Client.duplicateCheck", clientId);
     }
 
-    public void save(ClientDTO clientDTO) {
+    public ClientDTO save(ClientDTO clientDTO) {
         sql.insert("Client.save", clientDTO);
+        return sql.selectOne("Client.saveReturn", clientDTO);
 
     }
 
@@ -43,5 +44,9 @@ public class ClientRepository {
 
     public void point(ClientDTO clientDTO) {
         sql.update("Client.point", clientDTO);
+    }
+
+    public ClientDTO findByKakaoId(String clientKakaoId) {
+        return sql.selectOne("Client.findByKakaoId", clientKakaoId);
     }
 }

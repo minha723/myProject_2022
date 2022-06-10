@@ -159,7 +159,7 @@
                 </form>
 <%--                <a class="btn-outline-primary" href="/client/kakaoLogin">카카오</a>--%>
                 <a id="custom-login-btn" href="javascript: kakaoLogin();"><img src="//k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" alt="카카오 로그인 버튼" width="222" height="50" ></a>
-                <button class="api-btn" onclick="kakaoLogout()">카카오 로그아웃</button>
+<%--                <button class="api-btn" onclick="kakaoLogout()">카카오 로그아웃</button>--%>
                 <button class="api-btn" onclick="kakaoDelete()">카카오 탈퇴</button>
             </div>
 
@@ -188,11 +188,10 @@
                     success: function (res) {
                         console.log(res);
                         const kakao_id = res.id;
-                        const kakao_account = res.kakao_account;
                         const kakao_account_email = res.kakao_account.email;
                         console.log(kakao_id);
-                        console.log(kakao_account);
                         console.log(kakao_account_email);
+                        window.location.href="/client/kakaoLogin?id="+res.id;
                     },
                     fail: function (error) {
                         console.log(error)
@@ -205,16 +204,16 @@
         })
     }
 
-    function kakaoLogout() {
-        if (!Kakao.Auth.getAccessToken()) {
-            console.log('Not logged in.');
-            return;
-        }
-        Kakao.Auth.logout(function(response) {
-            alert(response +' logout');
-            window.location.href='/'
-        });
-    }
+    // function kakaoLogout() {
+    //     if (!Kakao.Auth.getAccessToken()) {
+    //         console.log('Not logged in.');
+    //         return;
+    //     }
+    //     Kakao.Auth.logout(function(response) {
+    //         alert(response +' logout');
+    //         window.location.href='/'
+    //     });
+    // }
 
     function kakaoDelete() {
         Kakao.API.request({

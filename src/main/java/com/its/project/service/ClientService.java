@@ -20,8 +20,8 @@ public class ClientService {
         }
     }
 
-    public void save(ClientDTO clientDTO) {
-        clientRepository.save(clientDTO);
+    public ClientDTO save(ClientDTO clientDTO) {
+        return clientRepository.save(clientDTO);
     }
 
     public ClientDTO login(ClientDTO clientDTO) {
@@ -51,5 +51,9 @@ public class ClientService {
 
     public void point(ClientDTO clientDTO) {
         clientRepository.point(clientDTO);
+    }
+
+    public ClientDTO kakaoLogin(String kakaoId) {
+        return clientRepository.findByKakaoId(kakaoId);
     }
 }

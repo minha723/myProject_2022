@@ -11,5 +11,6 @@ public class ClientDTO {
     private String clientEmail;
     private String clientMobile;
     private Long clientPoint;
+    private Long clientKakaoId;
 
 }

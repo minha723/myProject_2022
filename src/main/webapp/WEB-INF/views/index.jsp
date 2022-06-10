@@ -19,6 +19,7 @@
 
 <div class="container text-center">
 
+
     <c:choose>
         <c:when test="${sessionScope.loginVendorId != null}">
             <button class="btn btn-outline-success" onclick="findAllProduct()"> 상품 목록</button>
@@ -38,12 +39,14 @@
             <button class="btn btn-outline-success" onclick="cLogIn()">고객 로그인</button>
             <button class="btn btn-outline-success" onclick="vLogIn()">전문가 로그인</button>
             <button class="btn btn-outline-success" onclick="findAllProduct()">목록</button>
+            <button class="btn btn-outline-success" onclick="kakaoSignup()">카카오</button>
         </c:otherwise>
     </c:choose>
 
     <c:if test="${sessionScope.loginVendorId eq 'admin'}">
         <button class="btn btn-outline-success" onclick="approveList()">승인할 목록</button>
     </c:if>
+
 </div>
 </body>
 <script>
@@ -83,6 +86,9 @@
     }
     const findPoint = () => {
       location.href="/vendor/point?id=${sessionScope.loginVId}";
+    }
+    const kakaoSignup = () => {
+        location.href="/client/kakaoSignup";
     }
 
 </script>

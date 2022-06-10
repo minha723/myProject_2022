@@ -22,9 +22,15 @@ public class ClientController {
     }
 
     @PostMapping("/save")
-    public String save(@ModelAttribute ClientDTO clientDTO) {
-        clientService.save(clientDTO);
-        return "client/login";
+    public String save(@ModelAttribute ClientDTO clientDTO, HttpSession session) {
+        ClientDTO cLogin = clientService.save(clientDTO);
+        if (cLogin != null) {
+            session.setAttribute("loginClientId", cLogin.getClientId());
+            session.setAttribute("loginCId", cLogin.getId());
+            return "client/main";
+        } else {
+            return "client/login";
+        }
     }
 
     @PostMapping("/duplicate-check")
@@ -92,8 +98,16 @@ public class ClientController {
     }
 
     @GetMapping("/kakaoLogin")
-    public String loginKakao(){
-        return "client/kakaoLogin";
+    public String loginKakao(@RequestParam("id") String kakaoId, Model model,
+                             HttpSession session){
+        ClientDTO clientDTO = clientService.kakaoLogin(kakaoId);
+        if(clientDTO != null){
+            session.setAttribute("loginCId", clientDTO.getId());
+            session.setAttribute("loginClientId", clientDTO.getClientId());
+            return "client/main";
+        }
+        model.addAttribute("kakaoId", kakaoId);
+        return "client/kakaoSignup";
     }
 
     @PostMapping("login")
