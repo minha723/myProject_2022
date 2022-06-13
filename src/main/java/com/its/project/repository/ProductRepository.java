@@ -74,7 +74,6 @@ public class ProductRepository {
 
     public int purchase(HistoryDTO historyDTO) {
         sql.update("Vendor.updatePoint", historyDTO);
-        sql.update("Client.updatePoint", historyDTO);
         return sql.insert("History.save", historyDTO);
     }
 

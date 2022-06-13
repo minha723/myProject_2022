@@ -91,16 +91,14 @@
                         url: "/product/purchase", //충전 금액값을 보낼 url 설정
                         data: {
                             "id": ${product.id},
-                            // "paymentAmount": paymentAmount,
-                            // "pointUse": pointUse,
                         },
                     });
 
                     $.ajax({
                         type: "POST",
-                        url: "/client/pointUse", //충전 금액값을 보낼 url 설정
+                        url: "/client/pointUse",
                         data: {
-                            "id": ${sessionScope.loginCId},
+                            "id": '${sessionScope.loginCId}',
                             "clientPoint": pointUse,
                         },
                     });

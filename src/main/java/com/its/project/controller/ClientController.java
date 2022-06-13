@@ -116,7 +116,7 @@ public class ClientController {
         return "client/kakaoSignup";
     }
 
-    @PostMapping("login")
+    @PostMapping("/login")
     public String login(@ModelAttribute ClientDTO clientDTO, HttpSession session) {
         ClientDTO cLogin = clientService.login(clientDTO);
         if (cLogin != null) {
@@ -134,7 +134,7 @@ public class ClientController {
         return "index";
     }
 
-    @PostMapping("pointUse")
+    @PostMapping("/pointUse")
     public void pointUse(@ModelAttribute ClientDTO clientDTO){
         clientService.pointUse(clientDTO);
     }
