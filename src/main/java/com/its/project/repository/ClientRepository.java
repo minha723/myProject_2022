@@ -49,4 +49,9 @@ public class ClientRepository {
     public ClientDTO findByKakaoId(String clientKakaoId) {
         return sql.selectOne("Client.findByKakaoId", clientKakaoId);
     }
+
+
+    public void pointUse(ClientDTO clientDTO) {
+        sql.update("Client.pointUse", clientDTO);
+    }
 }

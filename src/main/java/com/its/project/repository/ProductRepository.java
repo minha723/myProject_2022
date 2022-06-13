@@ -24,8 +24,8 @@ public class ProductRepository {
     return sql.selectList("Product.findAll", pagingParam);
     }
 
-    public int productCount() {
-        return sql.selectOne("Product.count");
+    public int productCount(int productCategory) {
+        return sql.selectOne("Product.count", productCategory);
     }
 
     public ProductDTO findById(Long id) {

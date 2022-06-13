@@ -109,8 +109,22 @@
             <label for="productName">상품이름</label>
         </div>
         <div class="form-group form-floating">
-<%--            <input class="form-control" type="text" name="productDesc"--%>
-<%--                   placeholder="상품설명" required="required">--%>
+            <select class="form-select" name="productCategory" id="productCategory">
+                <option value="0">카테고리 선택불가</option>
+                <option value="1">영상·사진·음향</option>
+                <option value="2">심리상담·운세</option>
+                <option value="2">문서·글쓰기</option>
+                <option value="3">디자인</option>
+                <option value="4">IT·프로그래밍</option>
+                <option value="5">비지니스컨설팅</option>
+                <option value="6">취업·입시</option>
+                <option value="7">마케팅</option>
+                <option value="8">생황서비스</option>
+            </select>
+            <label for="productCategory">상품카테고리</label>
+        </div>
+
+        <div class="form-group form-floating">
             <textarea class ="form-control" id="productDesc" name="productDesc" required="required"></textarea>
             <label for="productDesc">상품설명</label>
         </div>

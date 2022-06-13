@@ -5,6 +5,7 @@ import com.its.project.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Service
@@ -55,5 +56,10 @@ public class ClientService {
 
     public ClientDTO kakaoLogin(String kakaoId) {
         return clientRepository.findByKakaoId(kakaoId);
+    }
+
+
+    public void pointUse(ClientDTO clientDTO) {
+        clientRepository.pointUse(clientDTO);
     }
 }

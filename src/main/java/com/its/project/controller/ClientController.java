@@ -92,6 +92,12 @@ public class ClientController {
         clientService.point(clientDTO);
     }
 
+    @PostMapping("pointAmount")
+    public @ResponseBody ClientDTO pointAmount(@RequestParam("id") Long id){
+        ClientDTO clientDTO = clientService.findById(id);
+        return clientDTO;
+    }
+
     @GetMapping("/login")
     public String loginForm() {
         return "client/login";
@@ -116,7 +122,7 @@ public class ClientController {
         if (cLogin != null) {
             session.setAttribute("loginClientId", cLogin.getClientId());
             session.setAttribute("loginCId", cLogin.getId());
-            return "client/main";
+            return "index";
         } else {
             return "client/login";
         }
@@ -127,4 +133,10 @@ public class ClientController {
         session.invalidate();
         return "index";
     }
+
+    @PostMapping("pointUse")
+    public void pointUse(@ModelAttribute ClientDTO clientDTO){
+        clientService.pointUse(clientDTO);
+    }
+
 }

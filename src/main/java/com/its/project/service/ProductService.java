@@ -39,11 +39,12 @@ public class ProductService {
         }
     }
 
-    public List<ProductDTO> findAll(int page) {
+    public List<ProductDTO> findAll(int page, int productCategory) {
         int pagingStart = (page - 1) * PAGE_LIMIT;
         Map<String, Integer> pagingParam = new HashMap<>();
         pagingParam.put("start", pagingStart);
         pagingParam.put("limit", PAGE_LIMIT);
+        pagingParam.put("productCategory", productCategory);
         return productRepository.findAll(pagingParam);
     }
 
@@ -54,8 +55,8 @@ public class ProductService {
         pagingParam.put("limit", PAGE_LIMIT);
         return productRepository.findAllStar(pagingParam);
     }
-    public PageDTO paging(int page) {
-    int productCount = productRepository.productCount();
+    public PageDTO paging(int page, int productCategory) {
+    int productCount = productRepository.productCount(productCategory);
     int maxPage = (int) (Math.ceil((double) productCount/PAGE_LIMIT));
     int startPage = (((int)(Math.ceil((double) page/BLOCK_LIMIT))) -1) * BLOCK_LIMIT + 1;
     int endPage = startPage + BLOCK_LIMIT -1;
@@ -140,7 +141,6 @@ public class ProductService {
     public boolean purchase(ProductDTO productDTO, Long loginCId) {
         ClientDTO clientDTO = clientService.findById(loginCId);
         HistoryDTO historyDTO = new HistoryDTO();
-        if(clientDTO.getClientPoint() >= productDTO.getProductPrice()){
             historyDTO.setProductId(productDTO.getId());
             historyDTO.setClientId(clientDTO.getClientId());
             historyDTO.setVendorId(productDTO.getVendorId());
@@ -151,9 +151,6 @@ public class ProductService {
             }else {
                 return false;
             }
-        }else{
-            return false;
-        }
     }
 
     public List<ProductDTO> history(String clientId) {

@@ -16,9 +16,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+
     <style>
         .robyn {
             font-family: 'Pacifico', cursive;
+            margin-top: -30px;
+            margin-left:-140px;
         }
 
         .search input {
@@ -86,6 +89,12 @@
             min-width: 6rem;
             text-align: center;
         }
+        .category{
+            align-self: flex-end;
+            font-size: 10px;
+        }
+
+
     </style>
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -101,12 +110,26 @@
     <h1 class="visually-hidden">Robyn's Market</h1>
     <div class="container">
         <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+
+            <a class="nav-link dropdown-toggle fw-bold category " href="#" id="category" role="button"
+               data-bs-toggle="dropdown" aria-expanded="false"> <i class="bi bi-list"></i> 전체 카테고리 </a>
+            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="category">
+                <li><a class="dropdown-item small" href="/product/findAll?productCategory=1">영상·사진·음향</a></li>
+                <li><a class="dropdown-item small" href="/product/findAll?productCategory=2">심리상담·운세</a></li>
+                <li><a class="dropdown-item small" href="/product/findAll?productCategory=3">문서·글쓰기</a></li>
+                <li><a class="dropdown-item small" href="/product/findAll?productCategory=4">디자인</a></li>
+                <li><a class="dropdown-item small" href="/product/findAll?productCategory=5">IT·프로그래밍</a></li>
+                <li><a class="dropdown-item small" href="/product/findAll?productCategory=6">비지니스컨설팅</a></li>
+                <li><a class="dropdown-item small" href="/product/findAll?productCategory=7">취업·입시</a></li>
+                <li><a class="dropdown-item small" href="/product/findAll?productCategory=8">마케팅</a></li>
+                <li><a class="dropdown-item small" href="/product/findAll?productCategory=9">생활서비스</a></li>
+                <li><a class="dropdown-item small" href="/product/findAll?productCategory=0">기타</a></li>
+            </ul>
+
             <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-                <svg class="bi me-2" width="40" height="32">
-                    <use xlink:href="#bootstrap"/>
-                </svg>
                 <span class="fs-4 robyn">Robyn's Market</span>
             </a>
+
 
             <ul class="nav nav-pills">
                 <%--                <li class="nav-item"><a href="/" class="nav-link active" aria-current="page">Home</a></li>--%>
@@ -116,27 +139,30 @@
                         <button type="submit"><i class="bi bi-search"></i></button>
                     </form>
                 </li>
-                <li class="nav-item"><a href="/product/findAll" class="nav-link">서비스</a></li>
-
-                <%--                <li class="nav-item"><a href="/product/findAll" class="nav-link"></a></li>--%>
-                <c:choose>
+                    <c:choose>
                     <c:when test="${sessionScope.loginClientId != null}">
+                        <li class="nav-item"><a href="/client/update?id=${sessionScope.loginCId}" class="nav-link">회원정보 수정</a></li>
+
                         <li class="nav-item"><a href="/client/point?id=${sessionScope.loginCId}"
                                                 class="nav-link left">포인트충전</a></li>
                         <li class="nav-item"><a href="/client/logout" class="nav-link left">로그아웃</a></li>
                     </c:when>
                     <c:when test="${sessionScope.loginVendorId != null}">
+                        <li class="nav-item"><a href="/product/save" class="nav-link">서비스 등록</a></li>
+                        <li class="nav-item"><a href="/vendor/update?id=${sessionScope.loginVId}" class="nav-link">회원정보 수정</a></li>
                         <li class="nav-item"><a href="/vendor/logout" class="nav-link left">로그아웃</a></li>
                     </c:when>
                     <c:otherwise>
+                        <li class="nav-item"><a href="/vendor/login" class="nav-link">서비스 등록</a></li>
+
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="loginDropbox" role="button"
                                data-bs-toggle="dropdown" aria-expanded="false">
                                 로그인
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="loginDropbox">
-                                <li><a class="dropdown-item" href="/client/login">고객</a></li>
-                                <li><a class="dropdown-item" href="/vendor/login">전문가</a></li>
+                                <li><a class="dropdown-item small" href="/client/login">고객</a></li>
+                                <li><a class="dropdown-item small" href="/vendor/login">전문가</a></li>
                             </ul>
                         </li>
 
@@ -146,20 +172,23 @@
                                 회원가입
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                                <li><a class="dropdown-item" href="/client/save">고객</a></li>
-                                <li><a class="dropdown-item" href="/vendor/save">전문가</a></li>
+                                <li><a class="dropdown-item small" href="/client/save">고객</a></li>
+                                <li><a class="dropdown-item small" href="/vendor/save">전문가</a></li>
                             </ul>
                         </li>
                     </c:otherwise>
                 </c:choose>
-
             </ul>
+
         </header>
     </div>
 
-    <div class="b-example-divider"></div>
 
 </header>
+
+
+<div class="b-example-divider"></div>
+
 </body>
 
 </html>

@@ -14,4 +14,5 @@ public class ProductDTO {
     private Long productPrice;
     private double productStar;
     private int productApproval;
+    private int productCategory;
 }

@@ -33,13 +33,6 @@
 <body>
 <jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
 
-<div class="container text-end">
-    <form action="/product/search" method="get">
-        <input type="text" name="q" placeholder="찾고싶은 상품을 검색해보세요">
-        <input type="submit" value="검색">
-    </form>
-</div>
-
 <div class="container text-end center">
     <button class="btn btn-sm" onclick="starList()">별점순으로 목록보기</button>
 </div>

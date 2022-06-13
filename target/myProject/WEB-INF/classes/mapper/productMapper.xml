@@ -5,13 +5,14 @@
 
 <mapper namespace="Product">
     <insert id="save" parameterType="product">
-        insert into product_table(vendorId, productName, productDesc, productPrice, productFileName)
-        values (#{vendorId}, #{productName}, #{productDesc}, #{productPrice}, #{productFileName})
+        insert into product_table(vendorId, productName, productDesc, productPrice, productFileName, productCategory)
+        values (#{vendorId}, #{productName}, #{productDesc}, #{productPrice}, #{productFileName}, #{productCategory})
 
     </insert>
 
     <select id="findAll" resultType="product" parameterType="java.util.HashMap">
-        select * from product_table where productApproval=1 order by id desc limit #{start}, #{limit}
+        select * from product_table where productApproval=1 and productCategory=#{productCategory}
+                                    order by id desc limit #{start}, #{limit}
     </select>
 
     <select id="findApproveList" resultType="product" parameterType="java.util.HashMap">
@@ -22,8 +23,8 @@
         select * from product_table where productApproval=1 order by productStar desc limit #{start}, #{limit}
     </select>
 
-    <select id="count" resultType="int">
-    select count(id) from product_table
+    <select id="count" resultType="int" parameterType="int">
+    select count(id) from product_table where productApproval=1 and productCategory=#{productCategory}
     </select>
 
     <select id="findById" resultType="product" parameterType="Long">
@@ -55,17 +56,17 @@
 <!--        <result column="PRO_NAME" property="productName"></result>-->
 <!--        <result column="PRO_PRICE" property="productPrice"></result>-->
 <!--        <result column="PRO_STAR" property="productStar"></result>-->
+<!--&lt;!&ndash;    </resultMap>&ndash;&gt;-->
+
+<!--    <resultMap id="historymap" type="HashMap">-->
+<!--        <result column="HIS_ID" property="id"></result>-->
+<!--        <result column="CLI_ID" property="clientId"></result>-->
+<!--        <result column="PRO_ID" property="productId"></result>-->
+<!--        <collection property="product" resultMap="Product"></collection>-->
 <!--    </resultMap>-->
 
-    <resultMap id="historymap" type="HashMap">
-        <result column="HIS_ID" property="id"></result>
-        <result column="CLI_ID" property="clientId"></result>
-        <result column="PRO_ID" property="productId"></result>
-        <collection property="product" resultMap="Product"></collection>
-    </resultMap>
-
-    <select id="findHistoryJoin" parameterType="String" resultType="historymap">
-        select p.*, HIS_ID from product_table p, history_table h where p.id = h.productId AND h.clientId = #{clientId};
+    <select id="findHistoryJoin" parameterType="String" resultType="map">
+        select p.*, h.id from product_table p, history_table h where p.id = h.productId AND h.clientId = #{clientId};
     </select>
 
 </mapper>

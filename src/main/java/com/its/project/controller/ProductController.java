@@ -1,9 +1,11 @@
 package com.its.project.controller;
 
 import com.its.project.dto.*;
+import com.its.project.service.ClientService;
 import com.its.project.service.ProductService;
 import com.its.project.service.ReviewService;
 import com.its.project.service.VendorService;
+import com.mysql.cj.xdevapi.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +27,10 @@ public class ProductController {
     @Autowired
     private ReviewService reviewService;
 
+    @Autowired
+    private ClientService clientService;
+
+
     @GetMapping("/save")
     public String saveForm() {
         return "product/save";
@@ -40,20 +46,22 @@ public class ProductController {
     }
 
     @GetMapping("/findAll")
-    public String findAll(@RequestParam(value = "page", required = false, defaultValue = "1") int page,
+    public String findAll(@RequestParam(value = "productCategory", required = false, defaultValue = "0") int productCategory,
+            @RequestParam(value = "page", required = false, defaultValue = "1") int page,
                           Model model) {
-        List<ProductDTO> productDTOList = productService.findAll(page);
-        PageDTO paging = productService.paging(page);
+        List<ProductDTO> productDTOList = productService.findAll(page, productCategory);
+        PageDTO paging = productService.paging(page, productCategory);
         model.addAttribute("productList", productDTOList);
         model.addAttribute("paging", paging);
         return "product/list";
     }
 
     @GetMapping("/findAllStar")
-    public String findAllStar(@RequestParam(value = "page", required = false, defaultValue = "1") int page,
+    public String findAllStar(@RequestParam(value = "productCategory", required = false, defaultValue = "0") int productCategory,
+                              @RequestParam(value = "page", required = false, defaultValue = "1") int page,
                               Model model) {
         List<ProductDTO> productDTOList = productService.findAllStar(page);
-        PageDTO paging = productService.paging(page);
+        PageDTO paging = productService.paging(page, productCategory);
         String star = "star";
         model.addAttribute("productList", productDTOList);
         model.addAttribute("paging", paging);
@@ -65,9 +73,9 @@ public class ProductController {
     public String approveForm(@RequestParam(value = "page", required = false, defaultValue = "1") int page,
                               Model model) {
         List<ProductDTO> productDTOList = productService.findApproveList(page);
-        PageDTO paging = productService.paging(page);
+//        PageDTO paging = productService.paging(page);
         model.addAttribute("productList", productDTOList);
-        model.addAttribute("paging", paging);
+//        model.addAttribute("paging", paging);
         return "product/approve";
     }
 
@@ -157,21 +165,34 @@ public class ProductController {
     }
 
     @GetMapping("/purchase")
+    public String purchaseForm(@RequestParam("id") Long productId,
+                               Model model) {
+        ProductDTO productDTO = productService.findById(productId);
+//        Long loginCId = (Long) session.getAttribute("loginCId");
+//        ClientDTO clientDTO = clientService.findById(loginCId);
+        model.addAttribute("product", productDTO);
+        return "history/purchase";
+    }
+
+    @PostMapping("/purchase")
     public String purchase(@RequestParam("id") Long productId, HttpSession session) {
         ProductDTO productDTO = productService.findById(productId);
-        System.out.println("productController productDTO = " + productDTO);
         Long loginCId = (Long) session.getAttribute("loginCId");
         if (productService.purchase(productDTO, loginCId)) {
             return "client/main";
         } else {
             return "client/purchase-fail";
+
         }
     }
 
-    @GetMapping("/history")
-    public String history(@RequestParam("clientId") String clientId, Model model){
-        List<ProductDTO> productDTOList = productService.history(clientId);
-        model.addAttribute("productList", productDTOList);
-        return "product/history";
+
+        @GetMapping("/history")
+        public String history (@RequestParam("clientId") String clientId, Model model){
+            List<ProductDTO> productDTOList = productService.history(clientId);
+            model.addAttribute("productList", productDTOList);
+            return "product/history";
+        }
     }
-}
+
+
