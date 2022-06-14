@@ -330,12 +330,18 @@
     <c:if test="${sessionScope.loginVendorId eq 'admin'}">
         <button class="btn btn-outline-success" onclick="approveList()">승인할 목록</button>
     </c:if>
+    <button class="btn btn-outline-success" onclick="chat()">채팅</button>
 
 </div>
+
+<jsp:include page="./layout/footer.jsp" flush="false"></jsp:include>
 
 </body>
 <script>
 
+    const chat = () => {
+      location.href = "/client/chat";
+    }
     const approveList = () => {
         location.href = "/product/approveList";
     }

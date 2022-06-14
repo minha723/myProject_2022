@@ -12,9 +12,17 @@
 <head>
     <title>Title</title>
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
+    <style>
+        .table-container {
+            max-width: 800px;
+            margin: auto;
+        }
+    </style>
 </head>
 <body>
 <jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
+
+<div class="table-container">
 
 <table class="table">
     <tr>
@@ -47,6 +55,7 @@
         </c:if>
     </tr>
 </table>
+</div>
 
 </body>
 </html>

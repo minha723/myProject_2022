@@ -49,22 +49,6 @@
                                  productPrice=#{productPrice}, productStar=#{productStar} where id=#{id}
     </update>
 
-
-<!--    <resultMap id="Product" type="product">-->
-<!--        <result column="PRO_ID" property="id"></result>-->
-<!--        <result column="VEN_ID" property="vendorId"></result>-->
-<!--        <result column="PRO_NAME" property="productName"></result>-->
-<!--        <result column="PRO_PRICE" property="productPrice"></result>-->
-<!--        <result column="PRO_STAR" property="productStar"></result>-->
-<!--&lt;!&ndash;    </resultMap>&ndash;&gt;-->
-
-<!--    <resultMap id="historymap" type="HashMap">-->
-<!--        <result column="HIS_ID" property="id"></result>-->
-<!--        <result column="CLI_ID" property="clientId"></result>-->
-<!--        <result column="PRO_ID" property="productId"></result>-->
-<!--        <collection property="product" resultMap="Product"></collection>-->
-<!--    </resultMap>-->
-
     <select id="findHistoryJoin" parameterType="String" resultType="map">
         select p.*, h.id from product_table p, history_table h where p.id = h.productId AND h.clientId = #{clientId};
     </select>

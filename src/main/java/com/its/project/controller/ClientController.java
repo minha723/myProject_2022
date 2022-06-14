@@ -16,6 +16,11 @@ public class ClientController {
     @Autowired
     private ClientService clientService;
 
+    @GetMapping("/chat")
+    public String chat(){
+        return "layout/chat";
+    }
+
     @GetMapping("/save")
     public String saveForm() {
         return "client/save";
