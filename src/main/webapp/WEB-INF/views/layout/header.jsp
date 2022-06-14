@@ -21,7 +21,7 @@
         .robyn {
             font-family: 'Pacifico', cursive;
             margin-top: -30px;
-            margin-left:-140px;
+            margin-left: -140px;
         }
 
         .search input {
@@ -89,7 +89,8 @@
             min-width: 6rem;
             text-align: center;
         }
-        .category{
+
+        .category {
             align-self: flex-end;
             font-size: 10px;
         }
@@ -139,22 +140,39 @@
                         <button type="submit"><i class="bi bi-search"></i></button>
                     </form>
                 </li>
-                    <c:choose>
-                    <c:when test="${sessionScope.loginClientId != null}">
-                        <li class="nav-item"><a href="/client/update?id=${sessionScope.loginCId}" class="nav-link">회원정보 수정</a></li>
-
+                <c:choose>
+                    <c:when test="${sessionScope.loginClientId != null and sessionScope.loginClientId != 'admin'}">
+                        <li class="nav-item"><a href="/client/update?id=${sessionScope.loginCId}" class="nav-link">회원정보
+                            수정</a></li>
                         <li class="nav-item"><a href="/client/point?id=${sessionScope.loginCId}"
                                                 class="nav-link left">포인트충전</a></li>
                         <li class="nav-item"><a href="/client/logout" class="nav-link left">로그아웃</a></li>
                     </c:when>
-                    <c:when test="${sessionScope.loginVendorId != null}">
+                    <c:when test="${sessionScope.loginVendorId != null and sessionScope.loginVendorId != 'admin'}">
                         <li class="nav-item"><a href="/product/save" class="nav-link">서비스 등록</a></li>
-                        <li class="nav-item"><a href="/vendor/update?id=${sessionScope.loginVId}" class="nav-link">회원정보 수정</a></li>
+                        <li class="nav-item"><a href="/vendor/update?id=${sessionScope.loginVId}" class="nav-link">회원정보
+                            수정</a></li>
+                        <li class="nav-item"><a href="/vendor/logout" class="nav-link left">로그아웃</a></li>
+                    </c:when>
+                    <c:when test="${sessionScope.loginVendorId eq 'admin' or sessionScope.loginClientId eq 'admin'}">
+                        <li class="nav-item"><a href="/product/approveList" class="nav-link">승인할 서비스</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="listDropbox" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false">
+                                목록
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="listDropbox">
+                                <li><a class="dropdown-item small" href="/client/findAll">고객</a></li>
+                                <li><a class="dropdown-item small" href="/vendor/findAll">전문가</a></li>
+                                <li><a class="dropdown-item small" href="/history/findAll">구매이력</a></li>
+                            </ul>
+                        </li>
+<%--                        <li class="nav-item"><a href="/vendor/update?id=${sessionScope.loginVId}" class="nav-link">회원정보--%>
+<%--                            수정</a></li>--%>
                         <li class="nav-item"><a href="/vendor/logout" class="nav-link left">로그아웃</a></li>
                     </c:when>
                     <c:otherwise>
                         <li class="nav-item"><a href="/vendor/login" class="nav-link">서비스 등록</a></li>
-
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="loginDropbox" role="button"
                                data-bs-toggle="dropdown" aria-expanded="false">

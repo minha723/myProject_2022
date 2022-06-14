@@ -12,6 +12,10 @@
         select * from history_table where clientId=#{clientId}
     </select>
 
+    <select id="findAll" resultType="history">
+        select * from history_table;
+    </select>
+
 </mapper>
 
 

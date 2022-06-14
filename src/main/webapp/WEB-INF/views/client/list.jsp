@@ -13,14 +13,19 @@
     <title>Title</title>
     <script src="/resources/js/jquery.js"></script>
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
+    <style>
+        .table-container {
+            max-width: 800px;
+            margin: auto;
+        }
+    </style>
 </head>
 <body>
 <jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
 
-    <h2>client/list.jsp</h2>
+<div class="table-container">
 
     <table class="table">
-
         <tr>
             <th>고객 번호</th>
             <th>고객 아이디</th>
@@ -34,8 +39,7 @@
                 <td> ${client.clientName}</td>
             </tr>
         </c:forEach>
-
     </table>
-
+</div>
 </body>
 </html>
