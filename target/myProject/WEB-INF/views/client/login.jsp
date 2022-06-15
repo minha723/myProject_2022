@@ -40,6 +40,7 @@
         .m-login h4 {
             text-align: center;
             font-size: 26px;
+            margin: 0px 0 10px;
         }
 
         .m-login .form-control:focus {
@@ -57,7 +58,7 @@
             border-color: #dee4e7;
             text-align: center;
             justify-content: center;
-            margin: 10px -20px -20px;
+            margin: 20px -20px -20px;
             border-radius: 5px;
             font-size: 13px;
         }
@@ -85,7 +86,7 @@
 
         .m-login .btn:hover,
         .m-login .btn:focus {
-            background: #333 !important;
+            background: darkgray !important;
             outline: none;
         }
 
@@ -110,6 +111,8 @@
         .api-btn{
             margin-top: 10px;
         }
+
+
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 
@@ -139,7 +142,7 @@
                     </div>
                 </form>
 <%--                <a class="btn-outline-primary" href="/client/kakaoLogin">카카오</a>--%>
-                <a id="custom-login-btn" href="javascript: kakaoLogin();"><img src="/resources/img/kakao_login_medium_narrow.png" alt="카카오 로그인 버튼" width="222" height="50" ></a>
+                <a  id="custom-login-btn" href="javascript: kakaoLogin();"><img src="/resources/img/kakao_login_medium_narrow.png" alt="카카오 로그인 버튼" width="222" height="50" ></a>
 <%--                <button class="api-btn" onclick="kakaoLogout()">카카오 로그아웃</button>--%>
 <%--                <button class="api-btn" onclick="kakaoDelete()">카카오 탈퇴</button>--%>
             </div>
@@ -212,6 +215,7 @@
     };
 
 </script>
+<jsp:include page="../layout/footer.jsp" flush="false"></jsp:include>
 
 </body>
 <script>

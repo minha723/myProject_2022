@@ -27,8 +27,8 @@
 
         .m-login .m-content {
             padding: 20px;
-            border-radius: 5px;
-            border: none;
+            border-radius: 12px;
+            border: 1px solid darkgray;
         }
 
         .m-login .m-header {
@@ -40,11 +40,11 @@
         .m-login h4 {
             text-align: center;
             font-size: 26px;
-            margin: 30px 0 2px;
+            margin: 0px 0 10px;
         }
 
         .m-login .form-control:focus {
-            border-color: #70c5c0;
+            border-color: #333;
         }
 
         .m-login .form-control,
@@ -54,7 +54,7 @@
         }
 
         .m-login .m-footer {
-            background: #ecf0f1;
+            background: #333333;
             border-color: #dee4e7;
             text-align: center;
             justify-content: center;
@@ -68,23 +68,25 @@
         }
 
         .m-login.m-dialog {
-            margin-top: 80px;
+            margin-top: 30px;
         }
 
         .m-login .btn,
         .m-login .btn:active {
             color: #fff;
             border-radius: 4px;
-            background: #34b7a7 !important;
+            background: #333 !important;
             text-decoration: none;
             transition: all 0.4s;
             line-height: normal;
             border: none;
+            height: 47px;
+            width: 222px;
         }
 
         .m-login .btn:hover,
         .m-login .btn:focus {
-            background: #34b7a7 !important;
+            background: darkgray !important;
             outline: none;
         }
 
@@ -113,7 +115,7 @@
         <div class="m-content">
 
             <div class="m-header">
-                <h4 class="m-title">로그인</h4>
+                <h4 class="m-title">전문가 로그인</h4>
             </div>
 
             <div class="m-body">
@@ -140,6 +142,9 @@
         </div>
     </div>
 </div>
+
+<jsp:include page="../layout/footer.jsp" flush="false"></jsp:include>
+
 </body>
 <script>
     const vLogin = () => {
