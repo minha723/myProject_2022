@@ -46,12 +46,14 @@
             cursor: pointer;
             font-size: 17px;
             border-radius: 0 5px 5px 0;
+            margin-right: 15px;
         }
 
         .nav .nav-link {
             color: black;
             font-weight: bold;
             border-color: white;
+            padding-left: 0px;
         }
 
         .nav .nav-link:hover {
@@ -142,16 +144,52 @@
                 </li>
                 <c:choose>
                     <c:when test="${sessionScope.loginClientId != null and sessionScope.loginClientId != 'admin'}">
-                        <li class="nav-item"><a href="/client/update?id=${sessionScope.loginCId}" class="nav-link">회원정보
-                            수정</a></li>
-                        <li class="nav-item"><a href="/client/point?id=${sessionScope.loginCId}"
-                                                class="nav-link left">포인트충전</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="listClientProduct" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false">
+                                서비스 관련
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="listClientProduct">
+                                <li><a class="dropdown-item small" href="/product/like?clientId=${sessionScope.loginClientId}">찜한 서비스</a></li>
+                                <li><a class="dropdown-item small" href="/product/history?clientId=${sessionScope.loginClientId}">결제한 서비스</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="listClientMenu" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false">
+                                마이페이지
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="listClientMenu">
+                                <li><a class="dropdown-item small" href="/client/update?id=${sessionScope.loginCId}">회원정보 수정</a></li>
+                                <li><a class="dropdown-item small" href="/client/point?id=${sessionScope.loginCId}">포인트 충전</a></li>
+<%--                                <li><a class="dropdown-item small" href="/history/findAll">구매이력</a></li>--%>
+                            </ul>
+                        </li>
                         <li class="nav-item"><a href="/client/logout" class="nav-link left">로그아웃</a></li>
                     </c:when>
                     <c:when test="${sessionScope.loginVendorId != null and sessionScope.loginVendorId != 'admin'}">
                         <li class="nav-item"><a href="/product/save" class="nav-link">서비스 등록</a></li>
-                        <li class="nav-item"><a href="/vendor/update?id=${sessionScope.loginVId}" class="nav-link">회원정보
-                            수정</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="listVendorProduct" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false">
+                                서비스 관련
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="listVendorProduct">
+                                <li><a class="dropdown-item small" href="/product/save">서비스 등록</a></li>
+                                <li><a class="dropdown-item small" href="/product/findByVendor?id=${sessionScope.loginVendorId}">등록된 서비스</a></li>
+                                <li><a class="dropdown-item small" href="/vendor/point?id=${sessionScope.loginVId}">판매 목록</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="listVendorMenu" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false">
+                                마이페이지
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="listVendorMenu">
+                                <li><a class="dropdown-item small" href="/vendor/update?id=${sessionScope.loginVId}">회원정보 수정</a></li>
+                                <li><a class="dropdown-item small" href="/vendor/point?id=${sessionScope.loginVId}">포인트 조회</a></li>
+                            </ul>
+                        </li>
                         <li class="nav-item"><a href="/vendor/logout" class="nav-link left">로그아웃</a></li>
                     </c:when>
                     <c:when test="${sessionScope.loginVendorId eq 'admin' or sessionScope.loginClientId eq 'admin'}">
