@@ -304,21 +304,6 @@
 </div>
 <br>
 <div class="container text-center">
-
-    <c:choose>
-        <c:when test="${sessionScope.loginVendorId != null}">
-            <button class="btn btn-outline-success" onclick="findAllProduct()"> 상품 목록</button>
-            <button class="btn btn-outline-success" onclick="saveProduct()"> 상품 등록</button>
-            <button class="btn btn-outline-success" onclick="findPoint()"> 포인트 보기</button>
-            <button class="btn btn-outline-success" onclick="vLogOut()"> 로그아웃</button>
-        </c:when>
-    </c:choose>
-
-    <c:if test="${sessionScope.loginVendorId eq 'admin'}">
-        <button class="btn btn-outline-success" onclick="approveList()">승인할 목록</button>
-    </c:if>
-
-
 </div>
 
 <jsp:include page="./layout/footer.jsp" flush="false"></jsp:include>

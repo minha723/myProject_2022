@@ -57,15 +57,31 @@ public class ProductService {
 //        return productRepository.findByVendor(pagingParam);
 //    }
 
-    public List<ProductDTO> findAllStar(int page) {
+    public List<ProductDTO> findAllStar(int page, int productCategory) {
         int pagingStart = (page - 1) * PAGE_LIMIT;
         Map<String, Integer> pagingParam = new HashMap<>();
         pagingParam.put("start", pagingStart);
         pagingParam.put("limit", PAGE_LIMIT);
+        pagingParam.put("productCategory", productCategory);
         return productRepository.findAllStar(pagingParam);
     }
     public PageDTO paging(int page, int productCategory) {
     int productCount = productRepository.productCount(productCategory);
+    int maxPage = (int) (Math.ceil((double) productCount/PAGE_LIMIT));
+    int startPage = (((int)(Math.ceil((double) page/BLOCK_LIMIT))) -1) * BLOCK_LIMIT + 1;
+    int endPage = startPage + BLOCK_LIMIT -1;
+        if (endPage > maxPage)
+            endPage = maxPage;
+        PageDTO paging = new PageDTO();
+        paging.setPage(page);
+        paging.setStartPage(startPage);
+        paging.setEndPage(endPage);
+        paging.setMaxPage(maxPage);
+        return paging;
+    }
+
+    public PageDTO pagingQ(int page, String q) {
+    int productCount = productRepository.productCountQ(q);
     int maxPage = (int) (Math.ceil((double) productCount/PAGE_LIMIT));
     int startPage = (((int)(Math.ceil((double) page/BLOCK_LIMIT))) -1) * BLOCK_LIMIT + 1;
     int endPage = startPage + BLOCK_LIMIT -1;

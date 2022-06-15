@@ -17,8 +17,8 @@
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
     <style>
         .table-container{
-            max-width: 800px;
             margin: auto;
+            min-width: 850px;
         }
     </style>
 </head>
@@ -46,6 +46,7 @@
         <td> ${history.productPrice}원</td>
     </tr>
     </c:forEach>
+</table>
 </div>
 
 

@@ -53,6 +53,7 @@ public class ProductController {
         PageDTO paging = productService.paging(page, productCategory);
         model.addAttribute("productList", productDTOList);
         model.addAttribute("paging", paging);
+        model.addAttribute("productCategory", productCategory);
         return "product/list";
     }
 
@@ -60,12 +61,23 @@ public class ProductController {
     public String findAllStar(@RequestParam(value = "productCategory", required = false, defaultValue = "0") int productCategory,
                               @RequestParam(value = "page", required = false, defaultValue = "1") int page,
                               Model model) {
-        List<ProductDTO> productDTOList = productService.findAllStar(page);
+        List<ProductDTO> productDTOList = productService.findAllStar(page, productCategory);
         PageDTO paging = productService.paging(page, productCategory);
         String star = "star";
         model.addAttribute("productList", productDTOList);
         model.addAttribute("paging", paging);
         model.addAttribute("star", star);
+        return "product/list";
+    }
+
+    @GetMapping("/search")
+    public String search(@RequestParam("q") String q,
+                         @RequestParam(value = "page", required = false, defaultValue = "1") int page,
+                         Model model) {
+        List<ProductDTO> productDTOList = productService.search(q);
+        PageDTO paging = productService.pagingQ(page, q);
+        model.addAttribute("productList", productDTOList);
+        model.addAttribute("paging", paging);
         return "product/list";
     }
 
@@ -137,13 +149,7 @@ public class ProductController {
     }
 
 
-    @GetMapping("/search")
-    public String search(@RequestParam("q") String q,
-                         Model model) {
-        List<ProductDTO> productDTOList = productService.search(q);
-        model.addAttribute("productList", productDTOList);
-        return "product/list";
-    }
+
 
     @GetMapping("/like")
     public String likeList(@RequestParam("clientId") String clientId, Model model) {

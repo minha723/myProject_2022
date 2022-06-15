@@ -131,7 +131,7 @@
 </body>
 <script>
     const starList = () => {
-        location.href = "/product/findAllStar";
+        location.href = "/product/findAllStar?productCategory=${productCategory}";
     }
 </script>
 </html>

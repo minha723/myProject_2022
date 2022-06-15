@@ -21,11 +21,17 @@
     </select>
 
     <select id="findAllStar" resultType="product" parameterType="java.util.HashMap">
-        select * from product_table where productApproval=1 order by productStar desc limit #{start}, #{limit}
+        select * from product_table where productApproval=1 and productCategory=#{productCategory}
+                                    order by productStar desc limit #{start}, #{limit}
     </select>
 
     <select id="count" resultType="int" parameterType="int">
     select count(id) from product_table where productApproval=1 and productCategory=#{productCategory}
+    </select>
+
+    <select id="countQ" resultType="int" parameterType="String">
+    select count(id) from product_table where productApproval=1 and productName
+                                              like concat('%', #{q}, '%')
     </select>
 
     <select id="findById" resultType="product" parameterType="Long">

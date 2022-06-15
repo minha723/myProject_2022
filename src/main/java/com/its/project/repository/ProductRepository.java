@@ -27,7 +27,9 @@ public class ProductRepository {
     public int productCount(int productCategory) {
         return sql.selectOne("Product.count", productCategory);
     }
-
+    public int productCountQ(String q) {
+        return sql.selectOne("Product.countQ", q);
+    }
     public ProductDTO findById(Long id) {
         return sql.selectOne("Product.findById", id);
     }

@@ -54,7 +54,8 @@ public class VendorController {
     @GetMapping("/delete")
     public String delete(@RequestParam("id") Long id, HttpSession session){
         String loginId = (String) session.getAttribute("loginVendorId");
-        if(loginId == "admin"){
+        String loginClientId = (String) session.getAttribute("loginClientId");
+        if(loginId == "admin" || loginClientId == "admin"){
         vendorService.delete(id);
         return "redirect: /vendor/findAll";
         }else {
@@ -92,7 +93,7 @@ public class VendorController {
         if (vLogin != null) {
             session.setAttribute("loginVendorId", vLogin.getVendorId());
             session.setAttribute("loginVId", vLogin.getId());
-            return "vendor/main";
+            return "index";
         }else {
             return "vendor/login";
         }

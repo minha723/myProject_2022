@@ -119,13 +119,13 @@
                 <option value="0">기타</option>
                 <option value="1">영상·사진·음향</option>
                 <option value="2">심리상담·운세</option>
-                <option value="2">문서·글쓰기</option>
-                <option value="3">디자인</option>
-                <option value="4">IT·프로그래밍</option>
-                <option value="5">비지니스컨설팅</option>
-                <option value="6">취업·입시</option>
-                <option value="7">마케팅</option>
-                <option value="8">생황서비스</option>
+                <option value="3">문서·글쓰기</option>
+                <option value="4">디자인</option>
+                <option value="5">IT·프로그래밍</option>
+                <option value="6">비지니스컨설팅</option>
+                <option value="7">취업·입시</option>
+                <option value="8">마케팅</option>
+                <option value="9">생활서비스</option>
             </select>
             <label for="productCategory">상품카테고리</label>
         </div>
