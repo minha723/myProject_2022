@@ -15,13 +15,9 @@
                                     order by id desc limit #{start}, #{limit}
     </select>
 
-<!--    <select id="findByVendor" resultType="product" parameterType="java.util.HashMap">-->
-<!--        select * from product_table where productCategory=#{productCategory}-->
-<!--                                    order by id desc limit #{start}, #{limit}-->
-<!--    </select>-->
 
     <select id="findApproveList" resultType="product" parameterType="java.util.HashMap">
-        select * from product_table where productApproval=0 order by id desc limit #{start}, #{limit}
+        select * from product_table order by id desc limit #{start}, #{limit}
     </select>
 
     <select id="findAllStar" resultType="product" parameterType="java.util.HashMap">

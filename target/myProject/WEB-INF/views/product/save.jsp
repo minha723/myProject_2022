@@ -44,7 +44,7 @@
         }
 
         .signup-form form {
-            border-radius: 1px;
+            border-radius: 8px;
             margin-bottom: 15px;
             background: #fff;
             border: 1px solid #f3f3f3;

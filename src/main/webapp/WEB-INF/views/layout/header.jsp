@@ -168,7 +168,6 @@
                         <li class="nav-item"><a href="/client/logout" class="nav-link left">로그아웃</a></li>
                     </c:when>
                     <c:when test="${sessionScope.loginVendorId != null and sessionScope.loginVendorId != 'admin'}">
-                        <li class="nav-item"><a href="/product/save" class="nav-link">서비스 등록</a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="listVendorProduct" role="button"
                                data-bs-toggle="dropdown" aria-expanded="false">
@@ -176,8 +175,8 @@
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="listVendorProduct">
                                 <li><a class="dropdown-item small" href="/product/save">서비스 등록</a></li>
-                                <li><a class="dropdown-item small" href="/product/findByVendor?id=${sessionScope.loginVendorId}">등록된 서비스</a></li>
-                                <li><a class="dropdown-item small" href="/vendor/point?id=${sessionScope.loginVId}">판매 목록</a></li>
+                                <li><a class="dropdown-item small" href="/product/findVendor">등록된 서비스</a></li>
+                                <li><a class="dropdown-item small" href="/history/findVendor">판매 목록</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -210,7 +209,7 @@
                         <li class="nav-item"><a href="/vendor/logout" class="nav-link left">로그아웃</a></li>
                     </c:when>
                     <c:otherwise>
-                        <li class="nav-item"><a href="/vendor/login" class="nav-link">서비스 등록</a></li>
+                        <li class="nav-item"><a onclick="vendorLogin()" class="nav-link">서비스 등록</a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="loginDropbox" role="button"
                                data-bs-toggle="dropdown" aria-expanded="false">
@@ -246,5 +245,11 @@
 <div class="b-example-divider"></div>
 
 </body>
+<script>
+    const vendorLogin = () => {
+        alert("서비스 등록은 전문가님만 가능합니다. 전문가로 로그인 해주세요.")
+        location.href="/vendor/login"
+    }
+</script>
 
 </html>

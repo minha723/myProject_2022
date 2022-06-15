@@ -25,9 +25,9 @@
         }
 
         .signup-form {
-            width: 390px;
+            width: 500px;
             margin: 0 auto;
-            padding: 90px 0;
+            padding: 45px 0;
         }
 
         .signup-form h2 {
@@ -44,7 +44,7 @@
         }
 
         .signup-form form {
-            border-radius: 1px;
+            border-radius: 10px;
             margin-bottom: 15px;
             background: #fff;
             border: 1px solid #f3f3f3;
@@ -79,7 +79,7 @@
         .signup-form .btn:active {
             font-size: 16px;
             font-weight: bold;
-            background: #34b7a7 !important;
+            background: #333 !important;
             border-radius: 3px;
             border: none;
             min-width: 140px;
@@ -87,11 +87,11 @@
 
         .signup-form .btn:hover,
         .signup-form .btn:focus {
-            background: #179b81 !important;
+            background: darkgray !important;
         }
 
         .signup-form a {
-            color: #19aa8d;
+            color: #333;
             text-decoration: none;
         }
 
@@ -103,7 +103,7 @@
 <body>
 <jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
 
-<div class="container signup-form text-center">
+<div class="signup-form text-center">
     <form action="/vendor/save" method="post" name="vSignUpForm" enctype="multipart/form-data">
         <p class="lead" style="font-weight: bolder;">전문가님 정보를 입력해주세요</p>
         <div class="form-group">
@@ -137,6 +137,8 @@
     </form>
     <div class="text-center">Already have an account? <a href="/vendor/login">Login here</a></div>
 </div>
+<jsp:include page="../layout/footer.jsp" flush="false"></jsp:include>
+
 </body>
 
 <script>

@@ -43,6 +43,7 @@
     </c:forEach>
 
 </table>
+<jsp:include page="../layout/footer.jsp" flush="false"></jsp:include>
 
 </body>
 </html>

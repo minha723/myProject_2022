@@ -23,5 +23,10 @@ public class HistoryController {
         model.addAttribute("historyList", historyDTOList);
         return "history/list";
     }
-
+    @GetMapping("/findVendor")
+    public String findVendor(Model model){
+        List<HistoryDTO> historyDTOList = historyService.findAll();
+        model.addAttribute("historyList", historyDTOList);
+        return "history/vendorHistory";
+    }
 }

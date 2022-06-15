@@ -27,7 +27,7 @@
         </tr>
 
         <c:forEach var="product" items="${productList}">
-            <c:if test="${product.productApproval eq 0 and sessionScope.loginVendorId eq 'admin'}">
+            <c:if test="${sessionScope.loginVendorId eq product.vendorId}">
                 <tr>
                     <td> ${product.id} </td>
                     <td><a href="/product/detail?page=${paging.page}&id=${product.id}"> ${product.productName}</td>
@@ -40,7 +40,6 @@
     </table>
 </div>
 <jsp:include page="../layout/footer.jsp" flush="false"></jsp:include>
-
 
 </body>
 </html>
