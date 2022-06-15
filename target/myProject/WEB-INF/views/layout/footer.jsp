@@ -18,7 +18,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
     <!-- Bootstrap core CSS -->
     <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -36,6 +36,15 @@
                 font-size: 3.5rem;
             }
         }
+        .chat{
+            cursor: pointer;
+        }
+        .ft-sm-size{
+            font-size: 0.75rem;
+            font-weight: bold;
+            color: #9a9ba7;
+            text-align: center;
+        }
 
     </style>
 
@@ -51,12 +60,26 @@
             <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Features</a></li>
             <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Pricing</a></li>
             <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
+            <li class="nav-item"><a onclick="chat()" class="nav-link px-2 text-muted chat">1:1 문의</a></li>
         </ul>
+        <p class="ft-sm-size text-muted">롸빈마켓은 통신판매중개자이며, 통신판매의 당사자가 아닙니다. 상품, 상품정보, 거래에 관한 의무와 책임은 판매회원에게 있습니다.</p>
         <p class="text-center text-muted ">&copy; 2022 Robyn's Market</p>
     </footer>
 </div>
 
 <div class="b-example-divider"></div>
+
 </body>
+<script>
+    const chat = () => {
+        let clientId = '${sessionScope.loginClientId}';
+        let vendorId = '${sessionScope.loginVendorId}';
+      if(clientId == '' || vendorId == 'admin'){
+          alert("로그인 해야 가능한 기능입니다.");
+          location.href="/client/login";
+        }else {
+          location.href="/client/chat";
+      }
+    }
+</script>
 </html>

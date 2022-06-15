@@ -48,6 +48,15 @@ public class ProductService {
         return productRepository.findAll(pagingParam);
     }
 
+//    public List<ProductDTO> findByVendor(int page, String vendorId) {
+//        int pagingStart = (page - 1) * PAGE_LIMIT;
+//        Map<String, Integer> pagingParam = new HashMap<>();
+//        pagingParam.put("start", pagingStart);
+//        pagingParam.put("limit", PAGE_LIMIT);
+//        pagingParam.put("vendorId", vendorId);
+//        return productRepository.findByVendor(pagingParam);
+//    }
+
     public List<ProductDTO> findAllStar(int page) {
         int pagingStart = (page - 1) * PAGE_LIMIT;
         Map<String, Integer> pagingParam = new HashMap<>();

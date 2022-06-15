@@ -16,8 +16,6 @@
     <style>
         .chat-container{
             margin: auto;
-            border-color: #51585e;
-            border-block-end-width: thin;
         }
     </style>
 </head>
@@ -25,7 +23,7 @@
 
 <div class="container chat-container">
     <div class="col-6">
-        <label><b>채팅방</b></label>
+        <label class="text-lg-center"><b>1:1 문의 채팅방</b></label>
     </div>
     <div>
         <div id="msgArea" class="col">
@@ -42,10 +40,18 @@
     </div>
     <div class="col-6">
     </div>
+<button class="btn btn-sm align-self-center" onclick="closeChat()">문의 종료하기</button>
 </div>
 </body>
 <script>
 
+    const closeChat = () => {
+        if(!confirm('문의를 종료하시면 채팅기록은 삭제됩니다. 종료하시겠습니까?')){
+          // alert("아니오를 눌렀습니다.");
+        }else {
+         location.href="/";
+        }
+    }
     
     const sendBtn = () => {
         sendMessage();

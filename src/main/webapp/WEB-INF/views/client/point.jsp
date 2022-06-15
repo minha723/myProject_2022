@@ -84,6 +84,7 @@
         });
     });
 </script>
+<jsp:include page="../layout/footer.jsp" flush="false"></jsp:include>
 
 </body>
 

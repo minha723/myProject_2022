@@ -85,4 +85,8 @@ public class ProductRepository {
     public List<Map<String, Object>> findHistoryJoin(String clientId) {
         return sql.selectList("Product.findHistoryJoin", clientId);
     }
+
+//    public List<ProductDTO> findByVendor(Map<String, Integer> pagingParam) {
+//        return sql.selectList("Product.findByVendor", pagingParam);
+//    }
 }

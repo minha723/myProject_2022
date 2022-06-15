@@ -27,7 +27,7 @@
         .signup-form {
             width: 800px;
             margin: 0 auto;
-            padding: 90px 0;
+            padding: 45px 0;
         }
 
         .signup-form h2 {
@@ -71,7 +71,7 @@
         .signup-form .btn:active {
             font-size: 16px;
             font-weight: bold;
-            background: #34b7a7 !important;
+            background: #333 !important;
             border-radius: 3px;
             border: none;
             min-width: 140px;
@@ -79,7 +79,7 @@
 
         .signup-form .btn:hover,
         .signup-form .btn:focus {
-            background: #179b81 !important;
+            background: darkgray !important;
         }
 
         .signup-form a {
@@ -89,6 +89,12 @@
 
         .signup-form a:hover {
             text-decoration: underline;
+        }
+        .ft-sm-size{
+            font-size: 0.75rem;
+            font-weight: bold;
+            color: #9a9ba7;
+            text-align: center;
         }
     </style>
 </head>
@@ -110,7 +116,7 @@
         </div>
         <div class="form-group form-floating">
             <select class="form-select" name="productCategory" id="productCategory">
-                <option value="0">카테고리 선택불가</option>
+                <option value="0">기타</option>
                 <option value="1">영상·사진·음향</option>
                 <option value="2">심리상담·운세</option>
                 <option value="2">문서·글쓰기</option>
@@ -141,8 +147,11 @@
             <button type="submit" class="btn btn-primary btn-block btn-lg">상품 등록신청</button>
         </div>
     </form>
-    <div class="text-center">상품 승인은 영업일 기준 1-2일 소요됩니다.</div>
+    <div class="text-center ft-sm-size">상품 승인은 영업일 기준 1-2일 소요됩니다.</div>
 </div>
+
+<jsp:include page="../layout/footer.jsp" flush="false"></jsp:include>
+
 </body>
 
 </html>

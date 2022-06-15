@@ -56,6 +56,17 @@ public class ProductController {
         return "product/list";
     }
 
+//    @GetMapping("/findByVendor")
+//    public String findByVendor(@RequestParam("id") Long vendorId,
+//            @RequestParam(value = "page", required = false, defaultValue = "1") int page,
+//                          Model model) {
+//        List<ProductDTO> productDTOList = productService.findByVendor(page, vendorId);
+//        PageDTO paging = productService.paging(page);
+//        model.addAttribute("productList", productDTOList);
+//        model.addAttribute("paging", paging);
+//        return "product/list";
+//    }
+
     @GetMapping("/findAllStar")
     public String findAllStar(@RequestParam(value = "productCategory", required = false, defaultValue = "0") int productCategory,
                               @RequestParam(value = "page", required = false, defaultValue = "1") int page,

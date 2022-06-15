@@ -44,7 +44,6 @@
             font-weight: bold;
             color: #9a9ba7;
             text-align: center;
-
         }
 
     </style>
@@ -69,6 +68,7 @@
 </div>
 
 <div class="b-example-divider"></div>
+
 </body>
 <script>
     const chat = () => {

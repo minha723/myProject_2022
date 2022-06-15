@@ -143,6 +143,9 @@
     <div class="text-center">작성된 후기는 수정이 불가합니다.</div>
 
 </div>
+
+<jsp:include page="../layout/footer.jsp" flush="false"></jsp:include>
+
 </body>
 
 </html>

@@ -125,6 +125,9 @@
         </c:choose>
     </ul>
 </div>
+
+<jsp:include page="../layout/footer.jsp" flush="false"></jsp:include>
+
 </body>
 <script>
     const starList = () => {

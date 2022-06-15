@@ -312,25 +312,12 @@
             <button class="btn btn-outline-success" onclick="findPoint()"> 포인트 보기</button>
             <button class="btn btn-outline-success" onclick="vLogOut()"> 로그아웃</button>
         </c:when>
-        <c:when test="${sessionScope.loginClientId != null}">
-            <button class="btn btn-outline-success" onclick="findAllProduct()"> 상품 목록</button>
-            <button class="btn btn-outline-success" onclick="findLikeProduct()"> 찜한 상품 목록</button>
-            <button class="btn btn-outline-success" onclick="findHistory()"> 결제한 상품</button>
-            <button class="btn btn-outline-success" onclick="cLogOut()"> 로그아웃</button>
-        </c:when>
-        <c:otherwise>
-            <button class="btn btn-outline-success" onclick="cSignUp()">고객 회원가입</button>
-            <button class="btn btn-outline-success" onclick="vSignUp()">전문가 회원가입</button>
-            <button class="btn btn-outline-success" onclick="cLogIn()">고객 로그인</button>
-            <button class="btn btn-outline-success" onclick="vLogIn()">전문가 로그인</button>
-            <button class="btn btn-outline-success" onclick="findAllProduct()">목록</button>
-        </c:otherwise>
     </c:choose>
 
     <c:if test="${sessionScope.loginVendorId eq 'admin'}">
         <button class="btn btn-outline-success" onclick="approveList()">승인할 목록</button>
     </c:if>
-    <button class="btn btn-outline-success" onclick="chat()">채팅</button>
+
 
 </div>
 

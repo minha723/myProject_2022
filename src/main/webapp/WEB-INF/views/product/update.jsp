@@ -133,6 +133,8 @@
     </form>
     <div class="text-center">상품 승인은 영업일 기준 1-2일 소요됩니다.</div>
 </div>
+<jsp:include page="../layout/footer.jsp" flush="false"></jsp:include>
+
 </body>
 
 <script>

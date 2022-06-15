@@ -10,29 +10,63 @@
 <head>
     <title>Title</title>
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
-
+    <style>
+        .update-form {
+            max-width: 400px;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid darkgray;
+            margin: auto;
+        }
+    </style>
 </head>
 <body>
 <jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
 
-<div class="container">
-    <div class="py-5 text-center">
+<div class="update-form">
+    <div class="py-3 text-center">
         <form action="/vendor/update" method="post" name="vUpdateForm">
+            <p class="lead" style="font-weight: bolder;">${sessionScope.loginVendorId} 전문가님의 회원정보</p>
             <input hidden class="form-control mb-2" type="text" name="id" value="${updateVendor.id}" readonly>
-            <input class="form-control mb-2" type="text" name="vendorId" value="${updateVendor.vendorId}" readonly>
-            <input class="form-control mb-2" type="text" id="pwConfirm" name="vendorPassword" placeholder="비밀번호를 입력하세요">
-            <input class="form-control mb-2" type="text" name="vendorName" value="${updateVendor.vendorName}">
-            <input class="form-control mb-2" type="text" name="vendorEmail" value="${updateVendor.vendorEmail}">
-            <input class="form-control mb-2" type="text" name="vendorMobile" value="${updateVendor.vendorMobile}">
-<%--            <input hidden class="form-control mb-2" type="text" name="vendorFileName" value="${updateVendor.vendorFileName}">--%>
-<%--            <img src="${pageContext.request.contextPath}/upload/${updateVendor.vendorFileName}" alt="img" width="100"--%>
-<%--                 height="100" class="mb-2">--%>
-<%--            <input type="file" class="form-control mb-2" name="vendorFile">--%>
-            <input type="button" onclick="vendorUpdate()" class="btn btn-primary" value="정보수정">
-            <input type="button" onclick="vendorDelete()" class="btn btn-primary" value="회원탈퇴">
+            <div class="form-floating">
+                <input class="form-control mb-2" id="vendorId" type="text" name="vendorId"
+                       value="${updateVendor.vendorId}" readonly>
+                <label for="vendorId">아이디</label>
+            </div>
+            <div class="form-floating">
+                <input class="form-control mb-2" type="text" id="pwConfirm" name="vendorPassword"
+                       placeholder="비밀번호를 입력하세요">
+                <label for="pwConfirm">비밀번호</label>
+            </div>
+            <div class="form-floating">
+                <input id="vendorName" class="form-control mb-2" type="text" name="vendorName"
+                       value="${updateVendor.vendorName}">
+                <label for="vendorName">이름</label>
+            </div>
+            <div class="form-floating">
+                <input id="vendorEmail" class="form-control mb-2" type="text" name="vendorEmail"
+                       value="${updateVendor.vendorEmail}">
+                <label for="vendorEmail">이메일주소</label>
+            </div>
+            <div class="form-floating">
+                <input id="vendorMobile" class="form-control mb-2" type="text" name="vendorMobile"
+                       value="${updateVendor.vendorMobile}">
+                <label for="vendorMobile">전화번호</label>
+            </div>
+            <div class="form-floating">
+                <input id="vendorPoint" class="form-control mb-2" type="text" name="vendorPoint"
+                       value="${updateVendor.vendorPoint}"
+                       readonly>
+                <label for="vendorPoint">잔여포인트</label>
+            </div>
+            <input type="button" onclick="vendorUpdate()" class="btn btn-secondary" value="정보수정">
+            <input type="button" onclick="vendorDelete()" class="btn btn-secondary" value="회원탈퇴">
         </form>
     </div>
 </div>
+
+<jsp:include page="../layout/footer.jsp" flush="false"></jsp:include>
+
 </body>
 
 <script>
