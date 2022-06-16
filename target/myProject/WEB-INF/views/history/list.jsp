@@ -17,8 +17,12 @@
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
     <style>
         .table-container{
+            margin: auto;
+            min-width: 700px;
             max-width: 800px;
             margin: auto;
+            border: 1px solid darkgray;
+            border-radius: 10px;
         }
     </style>
 </head>
@@ -46,8 +50,10 @@
         <td> ${history.productPrice}원</td>
     </tr>
     </c:forEach>
+</table>
 </div>
 
+<jsp:include page="../layout/footer.jsp" flush="false"></jsp:include>
 
 </body>
 </html>

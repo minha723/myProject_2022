@@ -12,12 +12,20 @@
 <head>
     <title>Title</title>
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
-
+    <style>
+        .table-container {
+            max-width: 800px;
+            margin: auto;
+            margin: auto;
+            border: 1px solid darkgray;
+            border-radius: 10px;
+        }
+    </style>
 </head>
 <body>
 <jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
 
-<div class="container">
+<div class="table-container">
     <table class="table table-hover">
         <tr>
             <th>상품번호</th>

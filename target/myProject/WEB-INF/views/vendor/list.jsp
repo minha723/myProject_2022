@@ -17,6 +17,8 @@
         .table-container {
             max-width: 800px;
             margin: auto;
+            border: 1px solid darkgray;
+            border-radius: 10px;
         }
     </style>
 </head>
@@ -39,5 +41,7 @@
         </c:forEach>
     </table>
 </div>
+<jsp:include page="../layout/footer.jsp" flush="false"></jsp:include>
+
 </body>
 </html>

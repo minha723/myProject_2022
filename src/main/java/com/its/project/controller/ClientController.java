@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -142,6 +143,15 @@ public class ClientController {
     @PostMapping("/pointUse")
     public void pointUse(@ModelAttribute ClientDTO clientDTO){
         clientService.pointUse(clientDTO);
+    }
+
+    @RequestMapping(value = "/findpw", method = RequestMethod.GET)
+    public void findPwGET() throws Exception{
+    }
+
+    @RequestMapping(value = "/findpw", method = RequestMethod.POST)
+    public void findPwPOST(@ModelAttribute ClientDTO client, HttpServletResponse response) throws Exception{
+        clientService.findPw(response, client);
     }
 
 }

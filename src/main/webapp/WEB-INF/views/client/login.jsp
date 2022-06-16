@@ -148,7 +148,7 @@
             </div>
 
             <div class="m-footer">
-                <a href="#">Forgot Password?</a>
+                <a href="/client/findpw">Forgot Password?</a>
                 <a href="/client/save">Don't have an account?</a>
             </div>
 

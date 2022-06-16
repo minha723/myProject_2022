@@ -11,6 +11,11 @@
     <title>Title</title>
 </head>
 <body>
+<jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
+
 ${vendor.vendorId} 님의 포인트는 ${vendor.vendorPoint}원 입니다.
+
+<jsp:include page="../layout/footer.jsp" flush="false"></jsp:include>
+
 </body>
 </html>

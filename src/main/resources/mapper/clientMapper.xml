@@ -50,9 +50,11 @@
         update client_table set clientPoint=clientPoint-#{clientPoint} where id=#{id};
     </update>
 
-<!--    <update id="updatePoint" parameterType="history">-->
-<!--        update client_table set clientPoint=clientPoint-#{productPrice} where clientId=#{clientId};-->
-<!--    </update>-->
+    <update id="updatePw" parameterType="client">
+        update client_table set clientPassword=#{clientPassword} where clientId=#{clientId};
+    </update>
+
+
 
 </mapper>
 

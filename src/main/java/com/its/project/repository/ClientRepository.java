@@ -54,4 +54,8 @@ public class ClientRepository {
     public void pointUse(ClientDTO clientDTO) {
         sql.update("Client.pointUse", clientDTO);
     }
+
+    public void updatePw(ClientDTO client) {
+        sql.update("Client.updatePw", client);
+    }
 }
