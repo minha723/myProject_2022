@@ -40,7 +40,7 @@ public class VendorRepository {
         return sql.update("Vendor.update", vendorDTO);
     }
 
-    public VendorDTO findPoint(Long id) {
-        return sql.selectOne("Vendor.findPoint", id);
+    public VendorDTO checkPoint(Long id) {
+        return sql.selectOne("Vendor.checkPoint", id);
     }
 }

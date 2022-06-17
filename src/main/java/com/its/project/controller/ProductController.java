@@ -27,9 +27,6 @@ public class ProductController {
     @Autowired
     private ReviewService reviewService;
 
-    @Autowired
-    private ClientService clientService;
-
 
     @GetMapping("/save")
     public String saveForm() {
@@ -45,9 +42,22 @@ public class ProductController {
         }
     }
 
+    @GetMapping("/approveList")
+    public String findApproveList(Model model) {
+        List<ProductDTO> productDTOList = productService.findApproveList();
+        model.addAttribute("productList", productDTOList);
+        return "product/approve";
+    }
+
+    @GetMapping("/approve")
+    public String approve(@RequestParam("id") Long id) {
+        productService.approve(id);
+        return "redirect:/product/approveList";
+    }
+
     @GetMapping("/findAll")
     public String findAll(@RequestParam(value = "productCategory", required = false, defaultValue = "0") int productCategory,
-            @RequestParam(value = "page", required = false, defaultValue = "1") int page,
+                          @RequestParam(value = "page", required = false, defaultValue = "1") int page,
                           Model model) {
         List<ProductDTO> productDTOList = productService.findAll(page, productCategory);
         PageDTO paging = productService.paging(page, productCategory);
@@ -70,39 +80,25 @@ public class ProductController {
         return "product/list";
     }
 
-    @GetMapping("/search")
-    public String search(@RequestParam("q") String q,
-                         @RequestParam(value = "page", required = false, defaultValue = "1") int page,
-                         Model model) {
-        List<ProductDTO> productDTOList = productService.search(q);
-        PageDTO paging = productService.pagingQ(page, q);
+    @GetMapping("/likeList")
+    public String likeList(@RequestParam("clientId") String clientId, Model model) {
+        List<ProductDTO> productDTOList = productService.likeList(clientId);
         model.addAttribute("productList", productDTOList);
-        model.addAttribute("paging", paging);
-        return "product/list";
-    }
-
-    @GetMapping("/approveList")
-    public String approveForm(@RequestParam(value = "page", required = false, defaultValue = "1") int page,
-                              Model model) {
-        List<ProductDTO> productDTOList = productService.findApproveList(page);
-//        PageDTO paging = productService.paging(page);
-        model.addAttribute("productList", productDTOList);
-//        model.addAttribute("paging", paging);
-        return "product/approve";
+        return "product/likeList";
     }
 
     @GetMapping("/findVendor")
-    public String findVendor(@RequestParam(value = "page", required = false, defaultValue = "1") int page,
-                              Model model) {
-        List<ProductDTO> productDTOList = productService.findApproveList(page);
+    public String findVendor(Model model) {
+        List<ProductDTO> productDTOList = productService.findApproveList();
         model.addAttribute("productList", productDTOList);
         return "product/vendorProduct";
     }
 
-    @GetMapping("/approve")
-    public String approve(@RequestParam("id") Long id) {
-        productService.approve(id);
-        return "redirect:/product/approveList";
+    @GetMapping("/history")
+    public String history(@RequestParam("clientId") String clientId, Model model) {
+        List<ProductDTO> productDTOList = productService.history(clientId);
+        model.addAttribute("productList", productDTOList);
+        return "product/history";
     }
 
     @GetMapping("/detail")
@@ -132,8 +128,8 @@ public class ProductController {
     }
 
     @GetMapping("/update")
-    public String update(@RequestParam("id") Long id, HttpSession session,
-                         Model model) {
+    public String updateForm(@RequestParam("id") Long id, HttpSession session,
+                             Model model) {
         Long vId = (Long) session.getAttribute("loginVId");
         VendorDTO vendorDTO = vendorService.findById(vId);
         ProductDTO productDTO = productService.findById(id);
@@ -148,14 +144,35 @@ public class ProductController {
         return "redirect: /product/detail?id=" + productDTO.getId();
     }
 
-
-
-
-    @GetMapping("/like")
-    public String likeList(@RequestParam("clientId") String clientId, Model model) {
-        List<ProductDTO> productDTOList = productService.likeList(clientId);
+    @GetMapping("/search")
+    public String search(@RequestParam("q") String q,
+                         @RequestParam(value = "page", required = false, defaultValue = "1") int page,
+                         Model model) {
+        List<ProductDTO> productDTOList = productService.search(q);
+        PageDTO paging = productService.pagingQ(page, q);
         model.addAttribute("productList", productDTOList);
-        return "product/likeList";
+        model.addAttribute("paging", paging);
+        return "product/list";
+    }
+
+    @GetMapping("/purchase")
+    public String purchaseForm(@RequestParam("id") Long productId,
+                               Model model) {
+        ProductDTO productDTO = productService.findById(productId);
+        model.addAttribute("product", productDTO);
+        return "history/purchase";
+    }
+
+    @PostMapping("/purchase")
+    public String purchase(@RequestParam("id") Long productId, HttpSession session) {
+        ProductDTO productDTO = productService.findById(productId);
+        Long loginCId = (Long) session.getAttribute("loginCId");
+        if (productService.purchase(productDTO, loginCId)) {
+            return "index";
+        } else {
+            return "client/purchase-fail";
+
+        }
     }
 
     @PostMapping("/like")
@@ -178,35 +195,6 @@ public class ProductController {
         return result;
     }
 
-    @GetMapping("/purchase")
-    public String purchaseForm(@RequestParam("id") Long productId,
-                               Model model) {
-        ProductDTO productDTO = productService.findById(productId);
-//        Long loginCId = (Long) session.getAttribute("loginCId");
-//        ClientDTO clientDTO = clientService.findById(loginCId);
-        model.addAttribute("product", productDTO);
-        return "history/purchase";
-    }
-
-    @PostMapping("/purchase")
-    public String purchase(@RequestParam("id") Long productId, HttpSession session) {
-        ProductDTO productDTO = productService.findById(productId);
-        Long loginCId = (Long) session.getAttribute("loginCId");
-        if (productService.purchase(productDTO, loginCId)) {
-            return "client/main";
-        } else {
-            return "client/purchase-fail";
-
-        }
-    }
-
-
-        @GetMapping("/history")
-        public String history (@RequestParam("clientId") String clientId, Model model){
-            List<ProductDTO> productDTOList = productService.history(clientId);
-            model.addAttribute("productList", productDTOList);
-            return "product/history";
-        }
-    }
+}
 
 

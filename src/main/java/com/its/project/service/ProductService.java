@@ -48,15 +48,6 @@ public class ProductService {
         return productRepository.findAll(pagingParam);
     }
 
-//    public List<ProductDTO> findByVendor(int page, String vendorId) {
-//        int pagingStart = (page - 1) * PAGE_LIMIT;
-//        Map<String, Integer> pagingParam = new HashMap<>();
-//        pagingParam.put("start", pagingStart);
-//        pagingParam.put("limit", PAGE_LIMIT);
-//        pagingParam.put("vendorId", vendorId);
-//        return productRepository.findByVendor(pagingParam);
-//    }
-
     public List<ProductDTO> findAllStar(int page, int productCategory) {
         int pagingStart = (page - 1) * PAGE_LIMIT;
         Map<String, Integer> pagingParam = new HashMap<>();
@@ -155,12 +146,8 @@ public class ProductService {
         }
     }
 
-    public List<ProductDTO> findApproveList(int page) {
-        int pagingStart = (page - 1) * PAGE_LIMIT;
-        Map<String, Integer> pagingParam = new HashMap<>();
-        pagingParam.put("start", pagingStart);
-        pagingParam.put("limit", PAGE_LIMIT);
-        return productRepository.findApproveList(pagingParam);
+    public List<ProductDTO> findApproveList() {
+        return productRepository.findApproveList();
     }
 
     public boolean purchase(ProductDTO productDTO, Long loginCId) {
@@ -180,10 +167,6 @@ public class ProductService {
 
     public List<ProductDTO> history(String clientId) {
         List<HistoryDTO> historyDTOList = productRepository.findHistory(clientId);
-        List<Map<String, Object>> list = productRepository.findHistoryJoin(clientId);
-        for (Map<String, Object> map: list) {
-            System.out.println("map 성공" + map.get("HIS_ID"));
-        }
         List<ProductDTO> productDTOList = new ArrayList<>();
         if(historyDTOList == null){
             return null;

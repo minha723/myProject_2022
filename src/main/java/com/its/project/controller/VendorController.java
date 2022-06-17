@@ -106,8 +106,8 @@ public class VendorController {
     }
 
     @GetMapping("/point")
-    public String findPoint(@RequestParam("id") Long id, Model model){
-        VendorDTO vendorDTO = vendorService.findPoint(id);
+    public String checkPoint(@RequestParam("id") Long id, Model model){
+        VendorDTO vendorDTO = vendorService.checkPoint(id);
         model.addAttribute("vendor", vendorDTO);
         return "vendor/point";
     }

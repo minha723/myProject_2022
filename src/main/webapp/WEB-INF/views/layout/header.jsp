@@ -137,7 +137,7 @@
             <ul class="nav nav-pills">
                 <%--                <li class="nav-item"><a href="/" class="nav-link active" aria-current="page">Home</a></li>--%>
                 <li class="nav-item search">
-                    <form action="/product/search" method="get">
+                    <form class="input-group" action="/product/search" method="get">
                         <input type="text" name="q" placeholder="서비스를 검색해 보세요">
                         <button type="submit"><i class="bi bi-search"></i></button>
                     </form>
@@ -150,7 +150,7 @@
                                 서비스 관련
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="listClientProduct">
-                                <li><a class="dropdown-item small" href="/product/like?clientId=${sessionScope.loginClientId}">찜한 서비스</a></li>
+                                <li><a class="dropdown-item small" href="/product/likeList?clientId=${sessionScope.loginClientId}">찜한 서비스</a></li>
                                 <li><a class="dropdown-item small" href="/product/history?clientId=${sessionScope.loginClientId}">결제한 서비스</a></li>
                             </ul>
                         </li>
@@ -204,8 +204,6 @@
                                 <li><a class="dropdown-item small" href="/history/findAll">구매이력</a></li>
                             </ul>
                         </li>
-<%--                        <li class="nav-item"><a href="/vendor/update?id=${sessionScope.loginVId}" class="nav-link">회원정보--%>
-<%--                            수정</a></li>--%>
                         <li class="nav-item"><a href="/vendor/logout" class="nav-link left">로그아웃</a></li>
                     </c:when>
                     <c:otherwise>
@@ -244,12 +242,31 @@
 
 <div class="b-example-divider"></div>
 
+<%--<div class="modal fade" id="pointModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">--%>
+<%--    <div class="modal-dialog">--%>
+<%--        <div class="modal-content">--%>
+<%--            <div class="modal-header">--%>
+<%--                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>--%>
+<%--                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--%>
+<%--            </div>--%>
+<%--            <div class="modal-body">--%>
+<%--                ...--%>
+<%--            </div>--%>
+<%--            <div class="modal-footer">--%>
+<%--                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>--%>
+<%--                <button type="button" class="btn btn-primary">Save changes</button>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+<%--</div>--%>
+
 </body>
 <script>
     const vendorLogin = () => {
         alert("서비스 등록은 전문가님만 가능합니다. 전문가로 로그인 해주세요.")
         location.href="/vendor/login"
     }
+
 </script>
 
 </html>

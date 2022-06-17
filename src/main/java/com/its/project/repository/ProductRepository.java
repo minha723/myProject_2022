@@ -70,8 +70,8 @@ public class ProductRepository {
         return sql.delete("Like.delete", unlikeDTO);
     }
 
-    public List<ProductDTO> findApproveList(Map<String, Integer> pagingParam) {
-        return sql.selectList("Product.findApproveList", pagingParam);
+    public List<ProductDTO> findApproveList() {
+        return sql.selectList("Product.findApproveList");
     }
 
     public int purchase(HistoryDTO historyDTO) {
@@ -84,11 +84,4 @@ public class ProductRepository {
     }
 
 
-    public List<Map<String, Object>> findHistoryJoin(String clientId) {
-        return sql.selectList("Product.findHistoryJoin", clientId);
-    }
-
-//    public List<ProductDTO> findByVendor(Map<String, Integer> pagingParam) {
-//        return sql.selectList("Product.findByVendor", pagingParam);
-//    }
 }

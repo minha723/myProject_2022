@@ -17,10 +17,6 @@ public class ClientController {
     @Autowired
     private ClientService clientService;
 
-    @GetMapping("/chat")
-    public String chat(){
-        return "layout/chat";
-    }
 
     @GetMapping("/save")
     public String saveForm() {
@@ -98,28 +94,19 @@ public class ClientController {
         clientService.point(clientDTO);
     }
 
-    @PostMapping("pointAmount")
+    @PostMapping("/pointAmount")
     public @ResponseBody ClientDTO pointAmount(@RequestParam("id") Long id){
         ClientDTO clientDTO = clientService.findById(id);
         return clientDTO;
+    }
+    @PostMapping("/pointUse")
+    public @ResponseBody void pointUse(@ModelAttribute ClientDTO clientDTO){
+        clientService.pointUse(clientDTO);
     }
 
     @GetMapping("/login")
     public String loginForm() {
         return "client/login";
-    }
-
-    @GetMapping("/kakaoLogin")
-    public String loginKakao(@RequestParam("id") String kakaoId, Model model,
-                             HttpSession session){
-        ClientDTO clientDTO = clientService.kakaoLogin(kakaoId);
-        if(clientDTO != null){
-            session.setAttribute("loginCId", clientDTO.getId());
-            session.setAttribute("loginClientId", clientDTO.getClientId());
-            return "client/main";
-        }
-        model.addAttribute("kakaoId", kakaoId);
-        return "client/kakaoSignup";
     }
 
     @PostMapping("/login")
@@ -133,6 +120,19 @@ public class ClientController {
             return "client/login";
         }
     }
+    @GetMapping("/kakaoLogin")
+    public String kakaoLogin(@RequestParam("id") String kakaoId, Model model,
+                             HttpSession session){
+        ClientDTO clientDTO = clientService.kakaoLogin(kakaoId);
+        if(clientDTO != null){
+            session.setAttribute("loginCId", clientDTO.getId());
+            session.setAttribute("loginClientId", clientDTO.getClientId());
+            return "index";
+        }
+        model.addAttribute("kakaoId", kakaoId);
+        return "client/kakaoSignup";
+    }
+
 
     @GetMapping("/logout")
     public String logout(HttpSession session) {
@@ -140,18 +140,19 @@ public class ClientController {
         return "index";
     }
 
-    @PostMapping("/pointUse")
-    public void pointUse(@ModelAttribute ClientDTO clientDTO){
-        clientService.pointUse(clientDTO);
-    }
 
     @RequestMapping(value = "/findpw", method = RequestMethod.GET)
-    public void findPwGET() throws Exception{
+    public String findPwForm() {
+        return "client/findpw";
     }
 
     @RequestMapping(value = "/findpw", method = RequestMethod.POST)
-    public void findPwPOST(@ModelAttribute ClientDTO client, HttpServletResponse response) throws Exception{
+    public void findPw(@ModelAttribute ClientDTO client, HttpServletResponse response) throws Exception{
         clientService.findPw(response, client);
+    }
+    @GetMapping("/chat")
+    public String chat(){
+        return "layout/chat";
     }
 
 }

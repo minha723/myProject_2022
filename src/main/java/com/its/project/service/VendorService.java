@@ -67,7 +67,7 @@ public class VendorService {
         }
     }
 
-    public VendorDTO findPoint(Long id) {
-        return vendorRepository.findPoint(id);
+    public VendorDTO checkPoint(Long id) {
+        return vendorRepository.checkPoint(id);
     }
 }
