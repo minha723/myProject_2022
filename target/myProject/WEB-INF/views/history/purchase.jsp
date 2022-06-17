@@ -13,23 +13,51 @@
     <script src="/resources/js/jquery.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
-
+    <style>
+        .form-purchase {
+            margin: auto;
+            max-width: 650px;
+            border: 1px solid darkgray;
+            border-radius: 10px;
+        }
+        .table .ftd{
+            width: 200px;
+        }
+        .form-purchase .table{
+            caption-side: top;
+        }
+    </style>
 </head>
 <body>
 <jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
+<div class="form-purchase">
+    <table class="table">
+        <caption class="text-center fw-bold">구매 페이지</caption>
+        <tr>
+            <td class="ftd">구매할 서비스: </td>
+            <td>${product.productName}</td>
+        </tr>
+        <tr>
+            <td>구매할 서비스 비용: </td>
+            <td>${product.productPrice} 원 </td>
+        </tr>
+        <tr>
+            <td>나의 포인트 조회: </td>
+            <td class="input-group"><input id="pointResult" readonly> <button onclick="pointAmount()">조회</button> </td>
+        </tr>
+        <tr>
+            <td>사용할 포인트 입력: </td>
+            <td class="input-group"><input type="text" id="pointUse"><button onclick="pointUse()">사용</button> </td>
+        </tr>
+        <tr>
+            <td>총 결제할 금액: </td>
+            <td class="input-group"><input id="payAmount" readonly> </td>
+        </tr>
+    </table>
+<p class="text-center"><a class="btn btn-secondary" onclick="pay()">결제</a></p>
+</div>
 
-<h2>구매내역</h2>
-
-구매할 서비스: ${product.productName} <br>
-구매할 서비스 비용: ${product.productPrice} 원<br>
-
-나의 포인트 조회: <input id="pointResult" readonly></input>
-<button onclick="pointAmount()">조회</button>
-사용할 포인트 입력: <input type="text" id="pointUse">
-<button onclick="pointUse()">사용</button>
-
-총 결제할 금액: <input id="payAmount" readonly></input>
-<button onclick="pay()">결제</button>
+<jsp:include page="../layout/footer.jsp" flush="false"></jsp:include>
 
 </body>
 

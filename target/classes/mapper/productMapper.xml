@@ -16,8 +16,8 @@
     </select>
 
 
-    <select id="findApproveList" resultType="product" parameterType="java.util.HashMap">
-        select * from product_table order by id desc limit #{start}, #{limit}
+    <select id="findApproveList" resultType="product">
+        select * from product_table order by id desc
     </select>
 
     <select id="findAllStar" resultType="product" parameterType="java.util.HashMap">
@@ -56,9 +56,6 @@
                                  productPrice=#{productPrice}, productStar=#{productStar} where id=#{id}
     </update>
 
-    <select id="findHistoryJoin" parameterType="String" resultType="map">
-        select p.*, h.id from product_table p, history_table h where p.id = h.productId AND h.clientId = #{clientId};
-    </select>
 
 </mapper>
 
